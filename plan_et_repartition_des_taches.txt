@@ -1,0 +1,19 @@
+Intro - Guillaume
+I) Fonctionnalités
+	1/ Le bureau - Hélène
+		on peut ouvrir et fermer les fenetres
+		pas de redimensionement
+	2/ Les widgets - Elisoa
+		a/ Calculatrice
+		b/ Meteo statique
+		c/ Galerie
+		d/ Bloc-notes (zone de texte)
+	3/ Les contraintes d'utilisation - Gregoire
+		6 fenetres, 5 utilisateurs, ...
+II) Scénarios d'utilisation - Florian et Quentin
+	ouvrir une fenetre, utiliser un widget, fermer une fenetre, ...
+Conclusion - Guillaume
+
+Relecture : Hélène
+
+
