@@ -20,7 +20,7 @@ Nous déveloperons un bureau distribué avec plusieurs applications :
 - une galerie de photos;
 - un widget météo (fixe sur pluie);
 
-Ces applications sont sous la forme de widgets. Elles ne sont pas fermables ou redimensionnables. 
+Ces applications sont sous la forme de widgets. Elles ne sont pas redimensionnables mais on peut les fermer. 
 
 On définit des maîtres de fenêtre. Lorsqu'un utilisateur clique sur ou dans une fenêtre, il en devient maître jusqu'à quelques secondes après qu'il ait perdu le focus.
 
