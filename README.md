@@ -32,10 +32,17 @@ Modèle du domaine : https://drive.google.com/file/d/0Bz-Ii4wLZeJRTnRJb1V1Qk5fWk
 
 Répartition :
 1) MAJ des cas d'utilisations et diagrammes des classes : Quentin
-2) Maquette : Quentin 
+
+2) Maquette : Quentin
+
 3) Diagramme de séquence système : Grégoire et Guillaume
+
 4) Diagramme des classes participantes : Elisoa et Hélène
+
 5) Diagramme de classes : Florian
+
 6) Diagramme d'interaction : Florian
+
 7) Conception détaillée : Grégoire et Guillaume
+
 
