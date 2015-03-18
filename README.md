@@ -42,6 +42,8 @@ Répartition :
 5) Diagramme de classes : Florian
 
 6) Diagramme d'interaction : Florian
+seul endroit où on parle d'Info Rep !
+utilisé pour spécifier les protocoles de communication (super important)
 
 7) Conception détaillée : Grégoire et Guillaume
 
