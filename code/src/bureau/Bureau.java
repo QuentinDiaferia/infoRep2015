@@ -6,8 +6,8 @@ public class Bureau {
 
 	private int nbUtilisateurs;
 	private int nbWidgets;
-	private static final int nbMaxUtilisateurs = 4;
-	private static final int nbMaxWidgets = 6;
+	public static final int nbMaxUtilisateurs = 4;
+	public static final int nbMaxWidgets = 6;
 
 
 
