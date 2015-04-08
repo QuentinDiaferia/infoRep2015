@@ -13,6 +13,7 @@ public class Client {
         BufferedInputStream bis;
         ObjectInputStream ois;
         String reponse;
+        Object retour;
         Bureau bureau = null;
 
         try {
@@ -30,8 +31,13 @@ public class Client {
                 s.close();*/
                 bis = new BufferedInputStream(s.getInputStream());
 				ois = new ObjectInputStream(bis);
-				bureau = (Bureau)ois.readObject();
+				retour = ois.readObject();
+				if(retour != null) {
+					bureau = (Bureau)retour;
 					System.out.println(bureau.toString());
+				} else {
+					System.out.println("Dépassement du nombre d'utilisateurs autorisés.");
+				}
 				bis.close();
 				s.close();
             }

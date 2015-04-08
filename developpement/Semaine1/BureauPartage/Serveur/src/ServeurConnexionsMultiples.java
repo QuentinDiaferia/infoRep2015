@@ -31,11 +31,23 @@ public class ServeurConnexionsMultiples implements Runnable {
                 // boucle infinie permettant les connexions multiples
                 while (true) {
 					Socket s = serverSocket1.accept();
-					System.out.println("Connexion d'un utilisateur.");
-					bureau.setnbUtilisateurs(bureau.getnbUtilisateurs() + 1);
-					Runnable runnable = new ServeurConnexionsMultiples(s, ++nbConnexions);
-					Thread thread = new Thread(runnable);
-					thread.start();
+					if(bureau.getnbUtilisateurs() < Bureau.nbMaxUtilisateurs) {
+						System.out.println("Connexion d'un utilisateur.");
+						bureau.setnbUtilisateurs(bureau.getnbUtilisateurs() + 1);
+						Runnable runnable = new ServeurConnexionsMultiples(s, ++nbConnexions);
+						Thread thread = new Thread(runnable);
+						thread.start();
+					} else {
+						System.out.println("Dépassement du nombre d'utilisateur maximum.");
+						OutputStream os;
+						ObjectOutputStream oos;
+						os = s.getOutputStream();
+						oos = new ObjectOutputStream(os);
+						oos.writeObject(null);
+						oos.close();
+						os.close();
+						s.close();
+					}
                 }
             }
         }
