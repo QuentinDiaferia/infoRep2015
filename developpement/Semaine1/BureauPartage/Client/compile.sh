@@ -1,1 +1,1 @@
-javac -sourcepath src/ -cp classes/ -d classes/ src/Client.java
+javac -sourcepath src/ -cp classes/ -d classes/ src/bureau/Bureau.java src/Client.java

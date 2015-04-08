@@ -41,10 +41,7 @@ public class ServeurConnexionsMultiples implements Runnable {
             BufferedInputStream bis = new BufferedInputStream(s.getInputStream());
             ObjectInputStream ois = new ObjectInputStream(bis);
             Bureau bureau = (Bureau)ois.readObject();
-            if (bureau!=null) {
-                System.out.println("L'objet envoyé n'a pas été reçu.");
-            }
-            System.out.println((String)ois.readObject());
+         	 	System.out.println(bureau.toString());
             bis.close();
             s.close();
         }
