@@ -9,9 +9,9 @@ public class Bureau implements Serializable{
 	public static final int nbMaxUtilisateurs = 4;
 	public static final int nbMaxWidgets = 6;
 
-	public Bureau(int nbUtilisateurs, int nbWidgets){
-		this.nbUtilisateurs=nbUtilisateurs;
-		this.nbWidgets=nbWidgets;
+	public Bureau(){
+		this.nbUtilisateurs = 0;
+		this.nbWidgets = 0;
 	}
 
 	public int getnbUtilisateurs(){

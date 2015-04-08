@@ -11,7 +11,7 @@ public class Client {
         OutputStream os;
         ObjectOutputStream oos;
         String reponse;
-        Bureau bureau = new Bureau(0,0);
+        Bureau bureau = new Bureau();
 
         try {
             if(args.length!=2){
