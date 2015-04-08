@@ -6,6 +6,12 @@ import bureau.*;
 public class ServeurConnexionsMultiples implements Runnable {
     private Socket s;
     private int ID;
+    
+    private static Bureau bureau;
+    
+    static {
+		bureau = new Bureau();
+	}
 
     public ServeurConnexionsMultiples(Socket socket, int i) {
         this.s = socket;
@@ -24,10 +30,12 @@ public class ServeurConnexionsMultiples implements Runnable {
                 System.out.println("Serveur en attente de connexion.");
                 // boucle infinie permettant les connexions multiples
                 while (true) {
-                    Socket s = serverSocket1.accept();
-                    Runnable runnable = new ServeurConnexionsMultiples(s, ++nbConnexions);
-                    Thread thread = new Thread(runnable);
-                    thread.start();
+					Socket s = serverSocket1.accept();
+					System.out.println("Connexion d'un utilisateur.");
+					bureau.setnbUtilisateurs(bureau.getnbUtilisateurs() + 1);
+					Runnable runnable = new ServeurConnexionsMultiples(s, ++nbConnexions);
+					Thread thread = new Thread(runnable);
+					thread.start();
                 }
             }
         }
@@ -38,12 +46,21 @@ public class ServeurConnexionsMultiples implements Runnable {
 
     public void run() {
         try {
-            BufferedInputStream bis = new BufferedInputStream(s.getInputStream());
+            /*BufferedInputStream bis = new BufferedInputStream(s.getInputStream());
             ObjectInputStream ois = new ObjectInputStream(bis);
             Bureau bureau = (Bureau)ois.readObject();
          	 	System.out.println(bureau.toString());
             bis.close();
-            s.close();
+            s.close();*/
+            
+            OutputStream os;
+			ObjectOutputStream oos;
+            os = s.getOutputStream();
+			oos = new ObjectOutputStream(os);
+			oos.writeObject(bureau);
+			oos.close();
+			os.close();
+			s.close();
         }
         catch (Exception e) {
             System.out.println(e.getMessage());

@@ -10,8 +10,10 @@ public class Client {
         InetAddress adresse;
         OutputStream os;
         ObjectOutputStream oos;
+        BufferedInputStream bis;
+        ObjectInputStream ois;
         String reponse;
-        Bureau bureau = new Bureau();
+        Bureau bureau = null;
 
         try {
             if(args.length!=2){
@@ -20,12 +22,18 @@ public class Client {
                 port = Integer.parseInt(args[1]);
                 adresse = InetAddress.getByName(args[0]);
                 s = new Socket(adresse, port);
-                os = s.getOutputStream();
+                /*os = s.getOutputStream();
                 oos = new ObjectOutputStream(os);
                 oos.writeObject(bureau);
                 oos.close();
                 os.close();
-                s.close();
+                s.close();*/
+                bis = new BufferedInputStream(s.getInputStream());
+				ois = new ObjectInputStream(bis);
+				bureau = (Bureau)ois.readObject();
+					System.out.println(bureau.toString());
+				bis.close();
+				s.close();
             }
         }
         catch(Exception e) {
