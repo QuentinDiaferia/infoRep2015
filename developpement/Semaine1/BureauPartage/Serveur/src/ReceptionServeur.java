@@ -7,7 +7,7 @@ import java.net.*;
 public class ReceptionServeur implements Runnable {
 
 	private BufferedInputStream in = null;
-	private static Bureau bureau;
+	private  Bureau bureau;
     Object retour;
     ObjectInputStream ois;
 
@@ -18,6 +18,7 @@ public class ReceptionServeur implements Runnable {
 	}
 	
 	public void run() {
+		while(true){
 		
 	        try {
 				ois = new ObjectInputStream(in);
@@ -32,6 +33,7 @@ public class ReceptionServeur implements Runnable {
 		    } catch (Exception e) {
 				System.out.println(e.getMessage());
 			}
+		}
 	}
 
 }

@@ -63,29 +63,10 @@ public class ServeurConnexionsMultiples implements Runnable {
     public void run() {
         try {
             os = s.getOutputStream();
-            
             Thread t3 = new Thread(new ReceptionServeur(bis, bureau));
             t3.start();
             Thread t2 = new Thread(new EmissionServeur(os, bureau));
             t2.start();
-
-
-
-
-   //          BufferedInputStream bis = new BufferedInputStream(s.getInputStream());
-   //          ObjectInputStream ois = new ObjectInputStream(bis);
-   //          Bureau bureau = (Bureau)ois.readObject();
-   //       	 	System.out.println(bureau.toString());
-   //          bis.close();
-   //          s.close();
-   //          OutputStream os;
-			// ObjectOutputStream oos;
-   //          os = s.getOutputStream();
-			// oos = new ObjectOutputStream(os);
-			// oos.writeObject(bureau);
-			// oos.close();
-			// os.close();
-			// s.close();
         }
         catch (Exception e) {
             System.out.println(e.getMessage());

@@ -11,6 +11,7 @@ public class Client implements Runnable {
     InputStream is;
     public static Bureau bureau ;
     public static BufferedInputStream bis;
+    public static BufferedOutputStream bos;
 
     public Client(Socket s){
         this.s=s;
@@ -33,8 +34,13 @@ public class Client implements Runnable {
                 adresse = InetAddress.getByName(args[0]);
                 s = new Socket(adresse, port);
                 bis = new BufferedInputStream(s.getInputStream());
-                    t1 = new Thread(new Client(s));
-                    t1.start();
+                bos = new BufferedOutputStream(s.getOutputStream());
+                ois = new ObjectInputStream(bis);
+                retour = ois.readObject();
+                bureau = (Bureau)retour;
+                System.out.println(bureau.toString());
+                t1 = new Thread(new Client(s));
+                t1.start();
             }
         }
         catch(Exception e) {
@@ -44,14 +50,10 @@ public class Client implements Runnable {
 
     public void run() {
         try {
-
-
-            os = s.getOutputStream();
-                    System.out.println("run");
             
             Thread t3 = new Thread(new Reception(bis, bureau));
             t3.start();
-            Thread t2 = new Thread(new Emission(os, bureau));
+            Thread t2 = new Thread(new Emission(bos, bureau));
             t2.start();
         }
         catch (Exception e) {

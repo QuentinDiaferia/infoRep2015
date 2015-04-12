@@ -9,7 +9,7 @@ public class EmissionServeur implements Runnable {
 	private OutputStream out;
 	private String message = null;
 	private Scanner sc = null;
-	public static Bureau bureau = null;
+	public  Bureau bureau = null;
 	
 	public EmissionServeur(OutputStream out, Bureau b) {
 		this.out = out;
@@ -22,15 +22,22 @@ public class EmissionServeur implements Runnable {
 		ObjectOutputStream oos;
 		sc = new Scanner(System.in);
         try {
-		oos = new ObjectOutputStream(out);	
-		oos.writeObject(bureau);	  
-        System.out.println("Envoie premier bureau");
+			oos = new ObjectOutputStream(out);	
+			oos.writeObject(bureau);	  
+			out.flush();
+	        System.out.println("Envoie premier bureau");
+			bureau.setnbWidgets(bureau.getnbWidgets()+1);
+			oos = new ObjectOutputStream(out);
+			oos.writeObject(bureau);
+			out.flush();	  
+	        System.out.println("Envoie deuxieme premier bureau");
 			while(true){
 				oos = new ObjectOutputStream(out);
-				    // System.out.println("=> Action: ajouter un widget (ou se déconnecter)? o/n ");
-					if(sc.nextLine().equals("o")){
-					bureau.setnbUtilisateurs(bureau.getnbUtilisateurs()+1);
+			    // System.out.println("=> Action: ajouter un widget (ou se déconnecter)? o/n ");
+				if(sc.nextLine().equals("o")){
+					bureau.setnbWidgets(bureau.getnbWidgets()+1);
 					oos.writeObject(bureau);
+				    out.flush();
 				}else{
 					oos.close();
 				}

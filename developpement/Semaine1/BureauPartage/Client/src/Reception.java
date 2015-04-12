@@ -7,9 +7,9 @@ import java.net.*;
 public class Reception implements Runnable {
 
 	private BufferedInputStream in = null;
-	private static Bureau bureau ;
-        Object retour;
-        ObjectInputStream ois;
+	private  Bureau bureau ;
+    Object retour;
+    ObjectInputStream ois;
 	public Reception(BufferedInputStream in, Bureau b){
 		
 		this.in = in;
@@ -18,11 +18,12 @@ public class Reception implements Runnable {
 	
 	public void run() {
 		
+		while(true){
 	        try {
 				ois = new ObjectInputStream(in);
 				retour = ois.readObject();
-				System.out.println("Mise à jour du bureau:");
 				if(retour != null) {
+					System.out.println("Mise à jour du bureau:");
 					bureau = (Bureau)retour;
 					System.out.println(bureau.toString());
 				} else {
@@ -31,6 +32,7 @@ public class Reception implements Runnable {
 		    } catch (Exception e) {
 				System.out.println(e.getMessage());
 			}
+		}
 	}
 
 }
