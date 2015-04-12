@@ -13,8 +13,10 @@ public class Client implements Runnable {
     public static BufferedInputStream bis;
     public static BufferedOutputStream bos;
 
-    public Client(Socket s){
+    public Client(Socket s, Bureau b){
         this.s=s;
+        bureau=b;
+        System.out.println(bureau.toString());
     }
 
     public static void main(String[] args) {
@@ -37,9 +39,7 @@ public class Client implements Runnable {
                 bos = new BufferedOutputStream(s.getOutputStream());
                 ois = new ObjectInputStream(bis);
                 retour = ois.readObject();
-                bureau = (Bureau)retour;
-                System.out.println(bureau.toString());
-                t1 = new Thread(new Client(s));
+                t1 = new Thread(new Client(s, (Bureau)retour));
                 t1.start();
             }
         }
