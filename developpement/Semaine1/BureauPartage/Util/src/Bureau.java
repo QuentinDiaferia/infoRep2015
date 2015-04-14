@@ -1,9 +1,10 @@
 package bureau;
 
+import java.util.*;
 import java.io.*;
 
 public class Bureau implements Serializable{
-
+    private static List<Widget> listeWidgets;
 	private int nbUtilisateurs;
 	private int nbWidgets;
 	public static final int nbMaxUtilisateurs = 4;
@@ -12,7 +13,12 @@ public class Bureau implements Serializable{
 	public Bureau(){
 		this.nbUtilisateurs = 0;
 		this.nbWidgets = 0;
+		this.listeWidgets = new ArrayList<Widget>();
 	}
+
+    public void ajouterWidget(Widget widget){
+        this.listeWidgets.add(widget);
+    }
 
 	public int getnbUtilisateurs(){
 		return this.nbUtilisateurs ;
@@ -21,6 +27,10 @@ public class Bureau implements Serializable{
 	public int getnbWidgets(){
 		return this.nbWidgets ;
 	}
+	
+	public void supprimerWidget(Widget widget){
+        this.listeWidgets.remove((Object)widget);
+    }
 
 	public int setnbUtilisateurs(int nb){
 		this.nbUtilisateurs = nb ;
