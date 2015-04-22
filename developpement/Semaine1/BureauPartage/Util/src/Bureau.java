@@ -15,16 +15,22 @@ public class Bureau implements Serializable{
 		this.nbWidgets = 0;
 		this.listeWidgets = new ArrayList<Widget>();
 	}
+	
+	public Bureau(Bureau b){
+		this.nbUtilisateurs = b.getNbUtilisateurs();
+		this.nbWidgets = b.getNbWidgets();
+		this.listeWidgets = b.getListeWidgets();
+	}
 
     public void ajouterWidget(Widget widget){
         this.listeWidgets.add(widget);
     }
 
-	public int getnbUtilisateurs(){
+	public int getNbUtilisateurs(){
 		return this.nbUtilisateurs ;
 	}
 
-	public int getnbWidgets(){
+	public int getNbWidgets(){
 		return this.nbWidgets ;
 	}
 	
@@ -32,12 +38,12 @@ public class Bureau implements Serializable{
         this.listeWidgets.remove((Object)widget);
     }
 
-	public int setnbUtilisateurs(int nb){
+	public int setNbUtilisateurs(int nb){
 		this.nbUtilisateurs = nb ;
 		return this.nbUtilisateurs ;
 	}
 
-	public int setnbWidgets(int nb){
+	public int setNbWidgets(int nb){
 		this.nbWidgets = nb ;
 		return this.nbWidgets ;
 	}
@@ -47,7 +53,7 @@ public class Bureau implements Serializable{
 	}
 
 	public String toString() {
-		String result = new String("Bureau possédant:\n"+ getnbWidgets() +" widgets et dont le nombre maximum est: "+nbMaxWidgets+"\n"+getnbUtilisateurs()+ " utilisateurs et dont le nombre maximum est: "+nbMaxUtilisateurs);
+		String result = new String("Bureau possédant:\n"+ getNbWidgets() +" widgets et dont le nombre maximum est: "+nbMaxWidgets+"\n"+getNbUtilisateurs()+ " utilisateurs et dont le nombre maximum est: "+nbMaxUtilisateurs);
 		return result;
 	}
 }

@@ -23,7 +23,7 @@ public class Emission implements Runnable {
 		sc = new Scanner(System.in);	
         try {
 			// oos = new ObjectOutputStream(out);
-			// bureau.setnbWidgets(bureau.getnbWidgets()+1);
+			// bureau.setnbWidgets(bureau.getNbWidgets()+1);
 			// oos.writeObject(bureau);	  
 	        //System.out.println("Envoie test");
 			// out.flush();
@@ -31,9 +31,9 @@ public class Emission implements Runnable {
 				oos = new ObjectOutputStream(out);
 			    System.out.println("=> Action: ajouter un widget (ou se déconnecter)? o/n ");
 				if(sc.nextLine().equals("o")){
-				    WidgetBlocNote wbn = new WidgetBlocNote(false, "1", 0, 0, 0);
-				    bureau.ajouterWidget(wbn);
-					bureau.setnbWidgets(bureau.getnbWidgets()+1);
+				    //WidgetBlocNote wbn = new WidgetBlocNote(false, "1", 0, 0, 0);
+				    //bureau.ajouterWidget(wbn);
+					bureau.setNbWidgets(bureau.getNbWidgets()+1);
 					oos.writeObject(bureau);
 			    	out.flush();
 				}else{

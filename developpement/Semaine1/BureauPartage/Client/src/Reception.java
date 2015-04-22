@@ -24,7 +24,7 @@ public class Reception implements Runnable {
 				retour = ois.readObject();
 				if(retour != null) {
 					System.out.println("Mise à jour du bureau:");
-					bureau = (Bureau)retour;
+					bureau = new Bureau((Bureau)retour);
 					System.out.println(bureau.toString());
 				} else {
 					System.out.println("Dépassement du nombre d'utilisateurs autorisés.");

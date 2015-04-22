@@ -26,7 +26,7 @@ public class EmissionServeur implements Runnable {
 			oos.writeObject(bureau);	  
 			out.flush();
 	        System.out.println("Envoie premier bureau");
-			bureau.setnbWidgets(bureau.getnbWidgets()+1);
+			bureau.setNbWidgets(bureau.getNbWidgets()+1);
 			oos = new ObjectOutputStream(out);
 			oos.writeObject(bureau);
 			out.flush();	  
@@ -35,7 +35,7 @@ public class EmissionServeur implements Runnable {
 				oos = new ObjectOutputStream(out);
 			    // System.out.println("=> Action: ajouter un widget (ou se déconnecter)? o/n ");
 				if(sc.nextLine().equals("o")){
-					bureau.setnbWidgets(bureau.getnbWidgets()+1);
+					bureau.setNbWidgets(bureau.getNbWidgets()+1);
 					oos.writeObject(bureau);
 				    out.flush();
 				}else{

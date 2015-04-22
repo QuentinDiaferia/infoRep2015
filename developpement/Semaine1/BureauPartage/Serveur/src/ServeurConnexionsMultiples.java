@@ -34,9 +34,9 @@ public class ServeurConnexionsMultiples implements Runnable {
                 // boucle infinie permettant les connexions multiples
                 while (true) {
 					Socket s = serverSocket1.accept();
-					if(bureau.getnbUtilisateurs() < Bureau.nbMaxUtilisateurs) {
+					if(bureau.getNbUtilisateurs() < Bureau.nbMaxUtilisateurs) {
 						System.out.println("Connexion d'un utilisateur.");
-						bureau.setnbUtilisateurs(bureau.getnbUtilisateurs() + 1);
+						bureau.setNbUtilisateurs(bureau.getNbUtilisateurs() + 1);
 						Runnable runnable = new ServeurConnexionsMultiples(s, ++nbConnexions);
 						Thread thread = new Thread(runnable);
                         bis = new BufferedInputStream(s.getInputStream());
