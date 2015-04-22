@@ -25,12 +25,14 @@ public class Emission implements Runnable {
 			// oos = new ObjectOutputStream(out);
 			// bureau.setnbWidgets(bureau.getnbWidgets()+1);
 			// oos.writeObject(bureau);	  
-	  //       System.out.println("Envoie test");
+	        //System.out.println("Envoie test");
 			// out.flush();
 			while(true){
 				oos = new ObjectOutputStream(out);
 			    System.out.println("=> Action: ajouter un widget (ou se déconnecter)? o/n ");
 				if(sc.nextLine().equals("o")){
+				    WidgetBlocNote wbn = new WidgetBlocNote(false, "1", 0, 0, 0);
+				    bureau.ajouterWidget(wbn);
 					bureau.setnbWidgets(bureau.getnbWidgets()+1);
 					oos.writeObject(bureau);
 			    	out.flush();
@@ -40,7 +42,7 @@ public class Emission implements Runnable {
 			}
 		}
         catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println("Attention ! : "+e.getMessage());
         }
 	}
 }

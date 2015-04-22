@@ -3,12 +3,20 @@ package bureau;
 import java.lang.*;
 import java.io.*;
 
-public class Widget implements Serializable{
+public abstract class Widget implements Serializable {
     private boolean statut;
     private String nom;
     private int x;
     private int y;
     private int z;
+    
+    public Widget(boolean statut, String nom, int x, int y, int z){
+        this.setStatut(statut);
+        this.setNom(nom);
+        this.setX(x);
+        this.setY(y);
+        this.setZ(z);
+    }
     
     public void setStatut(boolean _statut){
         this.statut = _statut;

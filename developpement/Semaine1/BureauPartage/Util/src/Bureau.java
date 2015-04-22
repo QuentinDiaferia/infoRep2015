@@ -41,6 +41,10 @@ public class Bureau implements Serializable{
 		this.nbWidgets = nb ;
 		return this.nbWidgets ;
 	}
+	
+	public List<Widget> getListeWidgets(){
+	    return this.listeWidgets;
+	}
 
 	public String toString() {
 		String result = new String("Bureau possédant:\n"+ getnbWidgets() +" widgets et dont le nombre maximum est: "+nbMaxWidgets+"\n"+getnbUtilisateurs()+ " utilisateurs et dont le nombre maximum est: "+nbMaxUtilisateurs);

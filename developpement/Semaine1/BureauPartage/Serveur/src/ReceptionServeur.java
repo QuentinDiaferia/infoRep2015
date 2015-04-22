@@ -27,6 +27,9 @@ public class ReceptionServeur implements Runnable {
 				if(retour != null) {
 					bureau = (Bureau)retour;
 					System.out.println(bureau.toString());
+					for(Widget widgetTemp : bureau.getListeWidgets()){
+					    System.out.println(widgetTemp.toString());
+					}
 				} else {
 					System.out.println("Dépassement du nombre d'utilisateurs autorisés.");
 				}
