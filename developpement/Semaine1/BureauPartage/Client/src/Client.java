@@ -3,46 +3,55 @@ import java.util.*;
 import java.net.*;
 import bureau.*;
 
-public class Client {
-    public static void main(String[] args) {
+public class Client implements Runnable {
+
+    public static Thread t1, t2, t3;
+    private Socket s;
+    OutputStream os;
+    InputStream is;
+    public static Bureau bureau ;
+    public static BufferedInputStream bis;
+    public static BufferedOutputStream bos;
+
+    public Client(Socket s, Bureau b){
+        this.s=s;
+        bureau=b;
+        System.out.println(bureau.toString());
+    }
+
+    public static void main(String[] args) throws Exception {
         Socket s;
         int port;
         InetAddress adresse;
-        OutputStream os;
         ObjectOutputStream oos;
-        BufferedInputStream bis;
         ObjectInputStream ois;
         String reponse;
         Object retour;
-        Bureau bureau = null;
 
-        try {
             if(args.length!=2){
                 System.out.println("2 arguments necessaires : IP Port");
             }else{
                 port = Integer.parseInt(args[1]);
                 adresse = InetAddress.getByName(args[0]);
                 s = new Socket(adresse, port);
-                /*os = s.getOutputStream();
-                oos = new ObjectOutputStream(os);
-                oos.writeObject(bureau);
-                oos.close();
-                os.close();
-                s.close();*/
                 bis = new BufferedInputStream(s.getInputStream());
-				ois = new ObjectInputStream(bis);
-				retour = ois.readObject();
-				if(retour != null) {
-					bureau = (Bureau)retour;
-					System.out.println(bureau.toString());
-				} else {
-					System.out.println("Dépassement du nombre d'utilisateurs autorisés.");
-				}
-				bis.close();
-				s.close();
+                bos = new BufferedOutputStream(s.getOutputStream());
+                ois = new ObjectInputStream(bis);
+                retour = ois.readObject();
+                t1 = new Thread(new Client(s, (Bureau)retour));
+                t1.start();
             }
+    }
+
+    public void run() {
+        try {
+            
+            Thread t3 = new Thread(new Reception(bis, bureau));
+            t3.start();
+            Thread t2 = new Thread(new Emission(bos, bureau));
+            t2.start();
         }
-        catch(Exception e) {
+        catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }

@@ -6,6 +6,9 @@ import bureau.*;
 public class ServeurConnexionsMultiples implements Runnable {
     private Socket s;
     private int ID;
+    public static BufferedInputStream bis;
+    OutputStream os;
+    public Thread t2, t3;
     
     private static Bureau bureau;
     
@@ -31,11 +34,12 @@ public class ServeurConnexionsMultiples implements Runnable {
                 // boucle infinie permettant les connexions multiples
                 while (true) {
 					Socket s = serverSocket1.accept();
-					if(bureau.getnbUtilisateurs() < Bureau.nbMaxUtilisateurs) {
+					if(bureau.getNbUtilisateurs() < Bureau.nbMaxUtilisateurs) {
 						System.out.println("Connexion d'un utilisateur.");
-						bureau.setnbUtilisateurs(bureau.getnbUtilisateurs() + 1);
+						bureau.setNbUtilisateurs(bureau.getNbUtilisateurs() + 1);
 						Runnable runnable = new ServeurConnexionsMultiples(s, ++nbConnexions);
 						Thread thread = new Thread(runnable);
+                        bis = new BufferedInputStream(s.getInputStream());
 						thread.start();
 					} else {
 						System.out.println("Dépassement du nombre d'utilisateur maximum.");
@@ -58,32 +62,14 @@ public class ServeurConnexionsMultiples implements Runnable {
 
     public void run() {
         try {
-            /*BufferedInputStream bis = new BufferedInputStream(s.getInputStream());
-            ObjectInputStream ois = new ObjectInputStream(bis);
-            Bureau bureau = (Bureau)ois.readObject();
-         	 	System.out.println(bureau.toString());
-            bis.close();
-            s.close();*/
-            
-            OutputStream os;
-			ObjectOutputStream oos;
             os = s.getOutputStream();
-			oos = new ObjectOutputStream(os);
-			oos.writeObject(bureau);
-			oos.close();
-			os.close();
-			s.close();
+            Thread t3 = new Thread(new ReceptionServeur(bis, bureau));
+            t3.start();
+            Thread t2 = new Thread(new EmissionServeur(os, bureau));
+            t2.start();
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
-        }
-        finally {
-            try {
-                s.close();
-            }
-            catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
         }
     }
 }
