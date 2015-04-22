@@ -19,7 +19,7 @@ public class Client implements Runnable {
         System.out.println(bureau.toString());
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Socket s;
         int port;
         InetAddress adresse;
@@ -28,7 +28,6 @@ public class Client implements Runnable {
         String reponse;
         Object retour;
 
-        try {
             if(args.length!=2){
                 System.out.println("2 arguments necessaires : IP Port");
             }else{
@@ -42,10 +41,6 @@ public class Client implements Runnable {
                 t1 = new Thread(new Client(s, (Bureau)retour));
                 t1.start();
             }
-        }
-        catch(Exception e) {
-            System.out.println(e.getMessage());
-        }
     }
 
     public void run() {

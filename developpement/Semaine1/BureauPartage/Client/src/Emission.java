@@ -31,8 +31,8 @@ public class Emission implements Runnable {
 				oos = new ObjectOutputStream(out);
 			    System.out.println("=> Action: ajouter un widget (ou se déconnecter)? o/n ");
 				if(sc.nextLine().equals("o")){
-				    //WidgetBlocNote wbn = new WidgetBlocNote(false, "1", 0, 0, 0);
-				    //bureau.ajouterWidget(wbn);
+				    WidgetBlocNote wbn = new WidgetBlocNote(false, "1", 0, 0, 0);
+				    bureau.ajouterWidget(wbn);
 					bureau.setNbWidgets(bureau.getNbWidgets()+1);
 					oos.writeObject(bureau);
 			    	out.flush();
@@ -41,7 +41,7 @@ public class Emission implements Runnable {
 				}
 			}
 		}
-        catch (Exception e) {
+        catch (IOException e) {
             System.out.println("Attention ! : "+e.getMessage());
         }
 	}

@@ -3,7 +3,7 @@ package bureau;
 import java.lang.*;
 import java.io.*;
 
-public class WidgetBlocNote extends Widget{
+public class WidgetBlocNote extends Widget implements Serializable{
     private String contenu;    
     
     public WidgetBlocNote(boolean statut, String nom, int x, int y, int z){

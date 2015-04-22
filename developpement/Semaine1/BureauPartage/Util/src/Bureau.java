@@ -4,7 +4,7 @@ import java.util.*;
 import java.io.*;
 
 public class Bureau implements Serializable{
-    private static List<Widget> listeWidgets;
+    private static ArrayList<Widget> listeWidgets;
 	private int nbUtilisateurs;
 	private int nbWidgets;
 	public static final int nbMaxUtilisateurs = 4;
@@ -48,7 +48,7 @@ public class Bureau implements Serializable{
 		return this.nbWidgets ;
 	}
 	
-	public List<Widget> getListeWidgets(){
+	public ArrayList<Widget> getListeWidgets(){
 	    return this.listeWidgets;
 	}
 
