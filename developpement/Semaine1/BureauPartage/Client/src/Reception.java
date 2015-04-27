@@ -7,13 +7,13 @@ import java.net.*;
 public class Reception implements Runnable {
 
 	private BufferedInputStream in = null;
-	private  Bureau bureau ;
+	private final Bureau bureau ;
     Object retour;
     ObjectInputStream ois;
-	public Reception(BufferedInputStream in, Bureau b){
-		
-		this.in = in;
-		bureau = b;
+    
+	public Reception(BufferedInputStream in, Bureau bureau){
+		this.in = in ;
+		this.bureau = bureau ;
 	}
 	
 	public void run() {
@@ -24,7 +24,7 @@ public class Reception implements Runnable {
 				retour = ois.readObject();
 				if(retour != null) {
 					System.out.println("Mise à jour du bureau:");
-					bureau = new Bureau((Bureau)retour);
+					this.bureau.copy((Bureau)retour);
 					System.out.println(bureau.toString());
 				} else {
 					System.out.println("Dépassement du nombre d'utilisateurs autorisés.");

@@ -9,14 +9,14 @@ public class Client implements Runnable {
     private Socket s;
     OutputStream os;
     InputStream is;
-    public static Bureau bureau ;
+    public final Bureau bureau ;
     public static BufferedInputStream bis;
     public static BufferedOutputStream bos;
 
-    public Client(Socket s, Bureau b){
+    public Client(Socket s, Bureau bureau){
         this.s=s;
-        bureau=b;
-        System.out.println(bureau.toString());
+        this.bureau=bureau;
+        System.out.println(this.bureau.toString());
     }
 
     public static void main(String[] args) throws Exception {
@@ -46,9 +46,9 @@ public class Client implements Runnable {
     public void run() {
         try {
             
-            Thread t3 = new Thread(new Reception(bis, bureau));
+            Thread t3 = new Thread(new Reception(bis, this.bureau));
             t3.start();
-            Thread t2 = new Thread(new Emission(bos, bureau));
+            Thread t2 = new Thread(new Emission(bos, this.bureau));
             t2.start();
         }
         catch (Exception e) {

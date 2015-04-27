@@ -9,21 +9,18 @@ public class ServeurConnexionsMultiples implements Runnable {
     public static BufferedInputStream bis;
     OutputStream os;
     public Thread t2, t3;
-    
-    private static Bureau bureau;
-    
-    static {
-		bureau = new Bureau();
-	}
+    public final Bureau bureau ;
 
-    public ServeurConnexionsMultiples(Socket socket, int i) {
+    public ServeurConnexionsMultiples(Socket socket, int i, Bureau bureau) {
         this.s = socket;
         this.ID = i;
+        this.bureau = bureau;
     }
 
     public static void main(String[] args) {
         int port;
         int nbConnexions = 0;
+        Bureau bureau = new Bureau();
         try {
             if(args.length!=1) {
                 System.out.println("Veuillez entrer le numéro de port que vous souhaitez utiliser.");
@@ -34,10 +31,9 @@ public class ServeurConnexionsMultiples implements Runnable {
                 // boucle infinie permettant les connexions multiples
                 while (true) {
 					Socket s = serverSocket1.accept();
-					if(bureau.getNbUtilisateurs() < Bureau.nbMaxUtilisateurs) {
+					Runnable runnable = new ServeurConnexionsMultiples(s, ++nbConnexions, bureau);
+					if(nbConnexions < 5) {
 						System.out.println("Connexion d'un utilisateur.");
-						bureau.setNbUtilisateurs(bureau.getNbUtilisateurs() + 1);
-						Runnable runnable = new ServeurConnexionsMultiples(s, ++nbConnexions);
 						Thread thread = new Thread(runnable);
                         bis = new BufferedInputStream(s.getInputStream());
 						thread.start();
