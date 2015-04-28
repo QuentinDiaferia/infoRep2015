@@ -1,0 +1,76 @@
+\documentclass[a4paper,12pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage[top=3cm, bottom=3cm, left=2cm, right=2cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{color}
+\usepackage{listings}
+\input{report/paramlst.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{titlepage}
+    \begin{center}
+        \begin{tikzpicture}[remember picture,overlay]
+            \node[xshift=5.5cm, yshift=-3.6cm] at (current page.north west) {\includegraphics[scale=0.5]{resources/logo-insa.jpg}};
+            \node[xshift=15.5cm, yshift=-3.6cm] at (current page.north west) {\includegraphics[scale=0.8]{resources/logo-asi.png}};
+        \end{tikzpicture}
+        \newline{} \newline{} \newline{} \newline{}
+        \huge{\bsc{Informatique Répartie}} \\
+        \rule{\linewidth}{1.5pt}
+        \huge{\textbf{Rapport final \\ Bureau partagé}}
+        \rule{\linewidth}{1.5pt} \newline{} \newline{}
+    \end{center}
+    \textit{Auteurs : \hfill Evaluateur :} \\ Quentin \bsc{Diaferia} \hfill Alexandre \bsc{Pauchet} 
+                                            \\ Grégoire \bsc{Gutzwiller}
+                                            \\ Florian \bsc{Lepetit}
+                                            \\ Guillaume \bsc{Minette de Saint-Martin}
+                                            \\ Elisoa \bsc{Ramarokoto}
+                                            \\ Hélène \bsc{Soudry}
+                                            \\
+                                            \\
+
+    \large{\underline{Cadre du projet : }} \\ \\
+    \normalsize{L'objectif du projet d'informatique répartie est de permettre aux étudiants de 
+        mettre en pratique les connaissances apprises en cours. Il est ainsi un parfait moyen
+        de comprendre et d'appréhender les concepts importants de l'informatique répartie. Ce rapport
+        a pour but de présenter l'ensemble du projet, de l'étape de spécifications au développement. En effet, 
+        notre projet a consisté en le développement d'une plateforme de bureau partagé, ce qui a 
+        nécessairement requis plusieurs étapes de réflexion.} \\ \\
+    \begin{center}
+        \textit{Date :} \\ 11 Mai 2015
+    \end{center}
+\end{titlepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tableofcontents
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter*{Introduction}
+\addcontentsline{toc}{chapter}{Introduction}
+\input{report/introduction.tex}
+
+\chapter{La phase de spécifications}
+\input{report/spec.tex}
+
+\chapter{La phase de conception}
+\input{report/conception.tex}
+
+\chapter{Choix techniques et phase de développement}
+\input{report/dev.tex}
+
+\chapter{Améliorations possibles}
+\input{report/suite.tex}
+
+\chapter{Répartition des tâches}
+\input{report/repartition.tex}
+
+\chapter*{Conclusion}
+\addcontentsline{toc}{chapter}{Conclusion}
+\input{report/conclusion.tex}
+
+\end{document}
