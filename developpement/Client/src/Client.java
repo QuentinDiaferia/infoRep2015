@@ -45,7 +45,7 @@ public class Client implements Runnable {
 
     public void run() {
         try {
-            
+
             Thread t3 = new Thread(new Reception(bis, this.bureau));
             t3.start();
             Thread t2 = new Thread(new Emission(bos, this.bureau));
