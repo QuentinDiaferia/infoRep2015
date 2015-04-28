@@ -14,6 +14,8 @@ util :
 	mkdir -p classes
 	javac -sourcepath src/ -cp classes/ -d classes/ Util/src/Widget.java
 	javac -sourcepath src/ -cp classes/ -d classes/ Util/src/WidgetBlocNote.java
+	javac -sourcepath src/ -cp classes/ -d classes/ Util/src/WidgetGalerie.java
+	javac -sourcepath src/ -cp classes/ -d classes/ Util/src/WidgetMeteo.java
 	javac -sourcepath src/ -cp classes/ -d classes/ Util/src/Bureau.java
 
 clean :
