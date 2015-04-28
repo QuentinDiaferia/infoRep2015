@@ -1,0 +1,93 @@
+\documentclass[11pt, handout]{beamer}
+\usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage[french]{babel}
+\usepackage{graphicx}
+\usetheme{Rochester}
+\definecolor{structcoul}{rgb}{0.82,0.2,0.2}
+%%\setbeamercolor{structure}{fg=structcoul, bg=structcoul!40}
+% \setbeamertemplate{footline}{
+% \leavevmode%
+% \hbox{\hspace*{-0.12cm}
+% \begin{beamercolorbox}[wd=.802\paperwidth,ht=2.25ex,dp=1ex,center]{section in head/foot}%
+% 	\usebeamerfont{section in head/foot}\insertshorttitle
+% \end{beamercolorbox}%
+% \begin{beamercolorbox}[wd=.21\paperwidth,ht=2.25ex,dp=1ex,right]{section in head/foot}%
+% 	\usebeamerfont{section in head/foot}\insertshortdate{}\hspace*{1em}
+% 	\insertframenumber{} / \inserttotalframenumber\hspace*{2ex}
+% \end{beamercolorbox}}%
+% }
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{footline}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.40\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\insertauthor
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.30\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\insertsection
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.30\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+    \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+
+\title[Bureau partagé]{Bureau partagé}
+%\subtitle{sous-titre}
+\author{Quentin \bsc{Diaferia} \\ 
+        Grégoire \bsc{Gutzwiller} \\ 
+        Florian \bsc{Lepetit} \\ 
+        Guillaume \bsc{Minette de Saint-Martin} \\ 
+        Elisoa \bsc{Ramarokoto} \\ 
+        Hélène \bsc{Soudry}}
+\date[12/05/2015]{Mardi 12 Mai 2015}
+
+\logo{\includegraphics[scale=0.04]{resources/logoInsa.jpeg}}
+\AtBeginSection[]{
+  \begin{frame}{Sommaire}
+  \small \tableofcontents[currentsection, hideothersubsections]
+  \end{frame} 
+}
+
+\begin{document}
+\begin{frame}[plain]
+	\maketitle
+\end{frame}
+
+
+%%%%%%% LE SOMMAIRE
+\section*{Sommaire}
+\begin{frame}
+	\frametitle{Sommaire}
+	\tableofcontents
+\end{frame}
+
+\section{Introduction}
+\input{slides/introduction.tex}
+
+\section{La phase de spécifications}
+\input{slides/spec.tex}
+
+\section{La phase de conception}
+\input{slides/conception.tex}
+
+\section{Choix techniques et phase de développement}
+\input{slides/dev.tex}
+
+\section{Améliorations possibles}
+\input{slides/suite.tex}
+
+\section{Répartition des tâches}
+\input{slides/repartition.tex}
+
+\section{Conclusion}
+\input{slides/conclusion.tex}
+
+
+\end{document}
