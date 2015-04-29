@@ -22,9 +22,9 @@ public class ServeurConnexionsMultiples implements Runnable {
     public static void main(String[] args) {
         int port;
         int nbConnexions = 0;
-        Bureau bureau = new Bureau();
         final HashMap<Integer,Socket> listeSockets = new HashMap<Integer,Socket>();
         try {
+            Bureau bureau = new Bureau();
             if(args.length!=1) {
                 System.out.println("Veuillez entrer le numéro de port que vous souhaitez utiliser.");
             }else {
