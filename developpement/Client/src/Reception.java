@@ -8,9 +8,9 @@ public class Reception implements Runnable {
 
 	private BufferedInputStream in = null;
 	private final Bureau bureau ;
-    Object retour;
-    ObjectInputStream ois;
-    
+	Object retour;
+	ObjectInputStream ois;
+	
 	public Reception(BufferedInputStream in, Bureau bureau){
 		this.in = in ;
 		this.bureau = bureau ;
@@ -18,8 +18,8 @@ public class Reception implements Runnable {
 	
 	public void run() {
 		
-		while(true){
-	        try {
+		try {
+			while(true){
 				ois = new ObjectInputStream(in);
 				retour = ois.readObject();
 				if(retour != null) {
@@ -29,9 +29,9 @@ public class Reception implements Runnable {
 				} else {
 					System.out.println("Dépassement du nombre d'utilisateurs autorisés.");
 				}
-		    } catch (Exception e) {
-				System.out.println(e.getMessage());
 			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
 	}
 

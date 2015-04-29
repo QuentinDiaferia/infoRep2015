@@ -8,25 +8,25 @@ public class ReceptionServeur implements Runnable {
 
 	private BufferedInputStream in = null;
 	private final Bureau bureau;
-    public final HashMap<Integer,Socket> listeSockets;
+	public final HashMap<Integer,Socket> listeSockets;
 	private Socket s;
-    Object retour;
-    ObjectInputStream ois;
+	Object retour;
+	ObjectInputStream ois;
 
 	public ReceptionServeur(Socket s, Bureau bureau, HashMap<Integer,Socket> socket){
 		this.s =s;
 		this.bureau = bureau;
-        this.listeSockets = socket;
+		this.listeSockets = socket;
 		try{
 			this.in = new BufferedInputStream(s.getInputStream());
 		}catch(Exception e) {
-            System.out.println(e.getMessage());
+			System.out.println(e.getMessage());
 		}
 	}
 
 	public void run() {
-		while(true){
-	        try {
+		try {
+			while(true){
 				ois = new ObjectInputStream(in);
 				retour = ois.readObject();
 				System.out.println("Mise à jour du bureau:");
@@ -35,14 +35,14 @@ public class ReceptionServeur implements Runnable {
 					System.out.println(bureau.toString());
 					System.out.println("Envoie du bureau aux clients:");
                     // initialisation du thread de broadcast
-                    Thread broadcast = new Thread(new EmissionServeur(listeSockets,bureau));
-                    broadcast.start();
+					Thread broadcast = new Thread(new EmissionServeur(listeSockets,bureau));
+					broadcast.start();
 				} else {
 					System.out.println("Dépassement du nombre d'utilisateurs autorisés.");
 				}
-		    } catch (Exception e) {
-				System.out.println(e.getMessage());
-			}
+			} 
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
 	}
 
