@@ -8,11 +8,11 @@ public class ServeurConnexionsMultiples implements Runnable {
     private int ID;
     public static BufferedInputStream bis;
     OutputStream os;
-    public final List<Socket> listeSockets;
+    public final HashMap<Integer,Socket> listeSockets;
     public Thread t3;
     public final Bureau bureau;
 
-    public ServeurConnexionsMultiples(Socket so, List<Socket> socket, int i, Bureau bureau) {
+    public ServeurConnexionsMultiples(Socket so, HashMap<Integer,Socket> socket, int i, Bureau bureau) {
         this.s = so;
         this.listeSockets = socket;
         this.ID = i;
@@ -23,7 +23,7 @@ public class ServeurConnexionsMultiples implements Runnable {
         int port;
         int nbConnexions = 0;
         Bureau bureau = new Bureau();
-        final List<Socket> listeSockets = (List<Socket>)Collections.synchronizedList(new ArrayList<Socket>());
+        final HashMap<Integer,Socket> listeSockets = new HashMap<Integer,Socket>();
         try {
             if(args.length!=1) {
                 System.out.println("Veuillez entrer le numéro de port que vous souhaitez utiliser.");
@@ -35,7 +35,7 @@ public class ServeurConnexionsMultiples implements Runnable {
                 // boucle infinie permettant les connexions multiples
                 while (true) {
 					Socket s = serverSocket1.accept();
-                    listeSockets.add(s);
+                    listeSockets.put(new Integer(nbConnexions),s);
                     // initialisation du thread de broadcast
                     Thread broadcast = new Thread(new EmissionServeur(listeSockets,bureau));
 					Runnable runnable = new ServeurConnexionsMultiples(s, listeSockets, ++nbConnexions, bureau);

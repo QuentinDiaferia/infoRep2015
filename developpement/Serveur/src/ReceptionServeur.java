@@ -8,12 +8,12 @@ public class ReceptionServeur implements Runnable {
 
 	private BufferedInputStream in = null;
 	private final Bureau bureau;
-    public final List<Socket> listeSockets;
+    public final HashMap<Integer,Socket> listeSockets;
 	private Socket s;
     Object retour;
     ObjectInputStream ois;
 
-	public ReceptionServeur(Socket s, Bureau bureau, List<Socket> socket){
+	public ReceptionServeur(Socket s, Bureau bureau, HashMap<Integer,Socket> socket){
 		this.s =s;
 		this.bureau = bureau;
         this.listeSockets = socket;

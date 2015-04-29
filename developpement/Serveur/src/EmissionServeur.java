@@ -6,12 +6,12 @@ import java.net.*;
 
 public class EmissionServeur implements Runnable {
 
-	private final List<Socket> listeSockets;
+	private final HashMap<Integer,Socket> listeSockets;
 	private String message = null;
 	private Scanner sc = null;
 	public final Bureau bureau;
 
-	public EmissionServeur(List<Socket> liste, Bureau b) {
+	public EmissionServeur(HashMap<Integer,Socket> liste, Bureau b) {
 		this.listeSockets = liste;
 		this.bureau = b;
 	}
@@ -20,7 +20,7 @@ public class EmissionServeur implements Runnable {
 	public void run() {
 		try{
 			if(listeSockets.size()>0){
-				for(Socket s : listeSockets){
+				for(Socket s : listeSockets.values()){
 					OutputStream out = s.getOutputStream();
 					ObjectOutputStream oos = new ObjectOutputStream(out);
 					oos.writeObject(bureau);
