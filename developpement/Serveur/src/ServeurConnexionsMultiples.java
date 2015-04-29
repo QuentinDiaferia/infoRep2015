@@ -8,11 +8,13 @@ public class ServeurConnexionsMultiples implements Runnable {
     private int ID;
     public static BufferedInputStream bis;
     OutputStream os;
-    public Thread t2, t3;
-    public final Bureau bureau ;
+    public final List<Socket> listeSockets;
+    public Thread t3;
+    public final Bureau bureau;
 
-    public ServeurConnexionsMultiples(Socket socket, int i, Bureau bureau) {
-        this.s = socket;
+    public ServeurConnexionsMultiples(Socket so, List<Socket> socket, int i, Bureau bureau) {
+        this.s = so;
+        this.listeSockets = socket;
         this.ID = i;
         this.bureau = bureau;
     }
@@ -21,19 +23,26 @@ public class ServeurConnexionsMultiples implements Runnable {
         int port;
         int nbConnexions = 0;
         Bureau bureau = new Bureau();
+        final List<Socket> listeSockets = (List<Socket>)Collections.synchronizedList(new ArrayList<Socket>());
         try {
             if(args.length!=1) {
                 System.out.println("Veuillez entrer le numéro de port que vous souhaitez utiliser.");
             }else {
                 port = Integer.parseInt(args[0]);
                 ServerSocket serverSocket1 = new ServerSocket(port);
+
                 System.out.println("Serveur en attente de connexion.");
                 // boucle infinie permettant les connexions multiples
                 while (true) {
 					Socket s = serverSocket1.accept();
-					Runnable runnable = new ServeurConnexionsMultiples(s, ++nbConnexions, bureau);
+                    listeSockets.add(s);
+                    // initialisation du thread de broadcast
+                    Thread broadcast = new Thread(new EmissionServeur(listeSockets,bureau));
+					Runnable runnable = new ServeurConnexionsMultiples(s, listeSockets, ++nbConnexions, bureau);
 					if(nbConnexions < 5) {
-						System.out.println("Connexion d'un utilisateur.");
+                        bureau.ajouterUtilisateur(new Integer(nbConnexions));
+						System.out.println("Connexion d'un utilisateur, mise à jour du bureau en conséquence.");
+                        broadcast.start();
 						Thread thread = new Thread(runnable);
                         bis = new BufferedInputStream(s.getInputStream());
 						thread.start();
@@ -55,14 +64,11 @@ public class ServeurConnexionsMultiples implements Runnable {
             System.out.println(e.getMessage());
         }
     }
-
     public void run() {
         try {
             os = s.getOutputStream();
-            Thread t3 = new Thread(new ReceptionServeur(bis, bureau));
+            Thread t3 = new Thread(new ReceptionServeur(s, bureau, listeSockets));
             t3.start();
-            Thread t2 = new Thread(new EmissionServeur(os, bureau));
-            t2.start();
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
