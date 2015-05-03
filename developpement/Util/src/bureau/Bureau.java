@@ -23,7 +23,7 @@ public class Bureau extends JFrame implements Serializable, ActionListener{
     private final JDesktopPane panneauBureau;
 
     // Constructeur sans argument
-	public Bureau() throws IOException{
+	public Bureau(){
         super("Bureau partagé");
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize(dimension);
@@ -73,7 +73,7 @@ public class Bureau extends JFrame implements Serializable, ActionListener{
         JMenuItem meteo = new JMenuItem("Meteo");
         meteo.setMnemonic(KeyEvent.VK_N);
         meteo.setAccelerator(KeyStroke.getKeyStroke(
-                KeyEvent.VK_N, ActionEvent.ALT_MASK));
+                KeyEvent.VK_M, ActionEvent.ALT_MASK));
         meteo.setActionCommand("meteo");
         meteo.addActionListener(this);
         menu.add(meteo);
@@ -82,7 +82,7 @@ public class Bureau extends JFrame implements Serializable, ActionListener{
         JMenuItem galerie = new JMenuItem("Galerie");
         galerie.setMnemonic(KeyEvent.VK_Q);
         galerie.setAccelerator(KeyStroke.getKeyStroke(
-                KeyEvent.VK_Q, ActionEvent.ALT_MASK));
+                KeyEvent.VK_G, ActionEvent.ALT_MASK));
         galerie.setActionCommand("galerie");
         galerie.addActionListener(this);
         menu.add(galerie);
@@ -91,7 +91,7 @@ public class Bureau extends JFrame implements Serializable, ActionListener{
         JMenuItem blocnote = new JMenuItem("Bloc-Notes");
         blocnote.setMnemonic(KeyEvent.VK_Q);
         blocnote.setAccelerator(KeyStroke.getKeyStroke(
-        KeyEvent.VK_Q, ActionEvent.ALT_MASK));
+        KeyEvent.VK_B, ActionEvent.ALT_MASK));
         blocnote.setActionCommand("blocnote");
         blocnote.addActionListener(this);
         menu.add(blocnote);
@@ -99,7 +99,7 @@ public class Bureau extends JFrame implements Serializable, ActionListener{
         JMenuItem calculatrice = new JMenuItem("Calculatrice");
         calculatrice.setMnemonic(KeyEvent.VK_Q);
         calculatrice.setAccelerator(KeyStroke.getKeyStroke(
-        KeyEvent.VK_Q, ActionEvent.ALT_MASK));
+        KeyEvent.VK_C, ActionEvent.ALT_MASK));
         calculatrice.setActionCommand("calculatrice");
         calculatrice.addActionListener(this);
         menu.add(calculatrice);
