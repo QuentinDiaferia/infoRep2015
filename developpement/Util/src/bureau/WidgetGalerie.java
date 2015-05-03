@@ -6,14 +6,14 @@ import java.util.*;
 
 public class WidgetGalerie extends Widget implements Serializable{
     private Integer image;
-    private HashMap<Integer, String> liensImages = new HashMap<>();   
-    
-    public WidgetGalerie(boolean statut, String nom, int x, int y, int z){
-        super(statut, nom, x, y, z);
+    private HashMap<Integer, String> liensImages = new HashMap<>();
+
+    public WidgetGalerie(boolean statut, String nom){
+        super(statut, nom);
         this.image = 1 ;
         this.liensImages.put(1, "lien");
     }
-    
+
     public Integer getImage(){
         return this.image;
     }
@@ -37,7 +37,7 @@ public class WidgetGalerie extends Widget implements Serializable{
             this.image = 1;
         }
     }
-        
+
     public void precedent(){
         if (this.image == 1) {
             this.image = this.liensImages.size();
@@ -48,6 +48,6 @@ public class WidgetGalerie extends Widget implements Serializable{
 
     public String toString() {
         String result = new String(super.toString()+"\n Galerie affichant l'image à l'adresse : "+this.liensImages.get(this.image));
-		return result;
+        return result;
     }
 }

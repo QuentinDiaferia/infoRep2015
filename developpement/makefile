@@ -12,7 +12,6 @@ serveur : util
 
 util :
 	javac -sourcepath Util/src/ -cp Util/classes/ -d Util/classes/ Util/src/bureau/*.java
-	javac -sourcepath Util/src/ -cp Util/classes/ -d Util/classes/ Util/src/Fenetre.java
 
 clean :
 	rm -f -r Serveur/classes/*.class Serveur/classes/bureau/
