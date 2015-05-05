@@ -11,7 +11,6 @@ public abstract class Widget extends JInternalFrame implements Serializable {
     private static int openFrameCount = 0;
     private static boolean statut;
     private static final int xOffset = 30, yOffset = 30;
-    private final JPanel panneau;
 
     public Widget(boolean statut, String nom){
         super("Widget " + nom,
@@ -21,19 +20,7 @@ public abstract class Widget extends JInternalFrame implements Serializable {
         false);//iconifiable
         this.setStatut(statut);
         openFrameCount = openFrameCount+1;
-        panneau = new JPanel(){
-            public void paintComponent(Graphics g){
-                try{
-                    super.paintComponent(g);
-                    g.drawImage(ImageIO.read(new File("meteo.png")), 0, 0, this);
-                }
-                catch(Exception e){
-                    System.out.println(e.getMessage());
-                }
-            }
-        };
-        this.setContentPane(panneau);
-        this.setSize(265,275);
+        
         setLocation(xOffset*openFrameCount, yOffset*openFrameCount);
     }
 
