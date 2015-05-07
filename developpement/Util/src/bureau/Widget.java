@@ -20,7 +20,7 @@ public abstract class Widget extends JInternalFrame implements Serializable {
         false);//iconifiable
         this.setStatut(statut);
         openFrameCount = openFrameCount+1;
-        
+
         setLocation(xOffset*openFrameCount, yOffset*openFrameCount);
     }
 
