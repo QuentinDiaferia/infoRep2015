@@ -17,7 +17,7 @@ public class WidgetMeteo extends Widget implements Serializable{
             public void paintComponent(Graphics g){
                 try{
                     super.paintComponent(g);
-                    g.drawImage(ImageIO.read(new File("meteo.png")), 0, 0, this);
+                    g.drawImage(ImageIO.read(new File("../Images/meteo.png")), 0, 0, this);
                 }
                 catch(Exception e){
                     System.out.println(e.getMessage());

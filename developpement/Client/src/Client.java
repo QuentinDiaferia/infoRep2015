@@ -16,6 +16,7 @@ public class Client implements Runnable {
     public Client(Socket s, Bureau bureau){
         this.s=s;
         this.bureau=bureau;
+        this.bureau.affichageBureau();
         System.out.println(this.bureau.toString());
     }
 

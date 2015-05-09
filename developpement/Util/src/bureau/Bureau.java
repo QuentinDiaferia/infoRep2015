@@ -31,7 +31,7 @@ public class Bureau extends JFrame implements Serializable, ActionListener{
             public void paintComponent(Graphics g){
                 try{
                     super.paintComponent(g);
-                    g.drawImage(ImageIO.read(new File("fondEcran.jpg")), 0, 0, this);
+                    g.drawImage(ImageIO.read(new File("../Images/fondEcran.jpg")), 0, 0, this);
                 }
                 catch(Exception e){
                     System.out.println(e.getMessage());
@@ -153,10 +153,24 @@ public class Bureau extends JFrame implements Serializable, ActionListener{
         System.exit(0);
     }
 
+    //Affichage du bureau
+    public void affichageBureau(){
+
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setSize(dimension);
+        this.setContentPane(panneauBureau);
+        this.setJMenuBar(createMenuBar());
+        panneauBureau.setDragMode(JDesktopPane.OUTLINE_DRAG_MODE);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setVisible(true);
+    }
+
 	// Méthode de copie
 	public void copy(Bureau b){
 		this.listeWidgets.clear();
 		this.listeUtilisateurs.clear();
+        if(b.getListeWidgets().size()>this.getListeWidgets().size())
+        ajouterWidget(b.getListeWidgets().get(b.getListeWidgets().size()-1));
 	    copyListeWidgets(this.listeWidgets,b.getListeWidgets());
 	    copyListeUtilisateurs(this.listeUtilisateurs,b.getListeUtilisateurs());
 	}

@@ -25,7 +25,7 @@ public class Emission implements Runnable {
 				oos = new ObjectOutputStream(out);
 			    System.out.println("=> Action: ajouter un widget (ou se déconnecter)? o/n ");
 				if(sc.nextLine().equals("o")){
-				    WidgetBlocNote wbn = new WidgetBlocNote(false, "Bloc-notes");
+				    WidgetMeteo wbn = new WidgetMeteo(true, "Meteo");
 				    this.bureau.ajouterWidget(wbn);
 					oos.writeObject(this.bureau);
 			    	out.flush();
