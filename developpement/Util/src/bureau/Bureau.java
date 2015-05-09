@@ -31,7 +31,7 @@ public class Bureau extends JFrame implements Serializable, ActionListener{
             public void paintComponent(Graphics g){
                 try{
                     super.paintComponent(g);
-                    g.drawImage(ImageIO.read(new File("../Images/fondEcran.jpg")), 0, 0, this);
+                    g.drawImage(ImageIO.read(new File("../Images/fondEcran.jpg")), 0, 0, (int)this.getSize().getWidth(), (int)this.getSize().getHeight(), this);
                 }
                 catch(Exception e){
                     System.out.println(e.getMessage());
