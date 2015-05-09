@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.KeyStroke;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.imageio.ImageIO;
 import java.util.*;
 import java.io.*;
@@ -40,9 +41,27 @@ public class Bureau extends JFrame implements Serializable, ActionListener{
         };
         this.setContentPane(panneauBureau);
         this.setJMenuBar(createMenuBar());
+        
+        
+        JPanel panel = new JPanel(){
+            public void paintComponent(Graphics g){
+                try{
+                    super.paintComponent(g);
+                    g.drawImage(ImageIO.read(new File("../Images/barreLancement.png")), 0, 0, this);
+                }
+                catch(Exception e){
+                    System.out.println(e.getMessage());
+                }
+            }
+        };
+        panel.setOpaque(false);
+        panel.setBounds((int)dimension.getWidth()/2-783/2, (int)dimension.getHeight()-155, 783, 110);
+        panneauBureau.add(panel);
+        
+        
         panneauBureau.setDragMode(JDesktopPane.OUTLINE_DRAG_MODE);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setVisible(true);
+        this.setVisible(true); 
 		this.listeWidgets = (java.util.List<Widget>)Collections.synchronizedList(new ArrayList<Widget>());
 		this.listeUtilisateurs = (java.util.List<Integer>)Collections.synchronizedList(new ArrayList<Integer>());
 
