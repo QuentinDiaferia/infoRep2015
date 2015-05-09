@@ -65,8 +65,32 @@ public class Bureau extends JFrame implements Serializable, ActionListener{
         this.listeUtilisateurs = b.getListeUtilisateurs();
 	}
 	
-	protected JPanel createLauncher(final String urlImg) {
-		JPanel launcher = new JPanel(){
+	protected JPanel createLauncher(final String nom) {
+		final String urlImg;
+		final Widget widget;
+		switch(nom) {
+			case "Meteo":
+				urlImg = "../Images/meteoLanceur.png";
+				widget = new WidgetMeteo(true, nom);
+				break;
+			case "Bloc-Notes":
+				urlImg = "../Images/blocLanceur.png";
+				widget = new WidgetBlocNote(true, nom);
+				break;
+			case "Galerie":
+				urlImg = "../Images/galerieLanceur.png";
+				widget = new WidgetGalerie(true, nom);
+				break;
+			case "Calculatrice":
+				urlImg = "../Images/calculLanceur.png";
+				widget = null;
+				break;
+			default:
+				urlImg = "../Images/decoLanceur.png";
+				widget = null;
+				break;
+		}
+		JPanel launcher = new JPanel() {
             public void paintComponent(Graphics g){
                 try{
                     super.paintComponent(g);
@@ -79,6 +103,20 @@ public class Bureau extends JFrame implements Serializable, ActionListener{
         };
         launcher.setOpaque(false);
         launcher.setSize(117, 108);
+        
+        launcher.addMouseListener(new MouseListener() {
+			public void mouseClicked(MouseEvent e) {
+				if(nom.equals("Quitter"))
+					quit();
+				else
+					ajouterWidget(widget);
+			}
+			public void mousePressed(MouseEvent e) {}
+			public void mouseReleased(MouseEvent e) {}
+			public void mouseEntered(MouseEvent e) {}
+			public void mouseExited(MouseEvent e) {}
+		});
+        
         return launcher;
 	}
 	
@@ -97,11 +135,11 @@ public class Bureau extends JFrame implements Serializable, ActionListener{
         barre.setOpaque(false);
         barre.setBounds((int)this.getSize().getWidth()/2-783/2, (int)this.getSize().getHeight()-155, 783, 110);
 
-        barre.add(createLauncher("../Images/meteoLanceur.png"));
-        barre.add(createLauncher("../Images/blocLanceur.png"));
-        barre.add(createLauncher("../Images/galerieLanceur.png"));
-        barre.add(createLauncher("../Images/calculLanceur.png"));
-        barre.add(createLauncher("../Images/decoLanceur.png"));
+        barre.add(createLauncher("Meteo"));
+        barre.add(createLauncher("Bloc-Notes"));
+        barre.add(createLauncher("Galerie"));
+        barre.add(createLauncher("Calculatrice"));
+        barre.add(createLauncher("Quitter"));
         
         return barre;
 	}
@@ -284,4 +322,10 @@ public class Bureau extends JFrame implements Serializable, ActionListener{
             destination.add(source.get(i));
         }
     }
+    
+    /*class clicListener implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+			
+		}
+	}*/
 }
