@@ -42,22 +42,7 @@ public class Bureau extends JFrame implements Serializable, ActionListener{
         this.setContentPane(panneauBureau);
         this.setJMenuBar(createMenuBar());
         
-        
-        JPanel panel = new JPanel(){
-            public void paintComponent(Graphics g){
-                try{
-                    super.paintComponent(g);
-                    g.drawImage(ImageIO.read(new File("../Images/barreLancement.png")), 0, 0, this);
-                }
-                catch(Exception e){
-                    System.out.println(e.getMessage());
-                }
-            }
-        };
-        panel.setOpaque(false);
-        panel.setBounds((int)dimension.getWidth()/2-783/2, (int)dimension.getHeight()-155, 783, 110);
-        panneauBureau.add(panel);
-        
+        panneauBureau.add(this.createLaunchBar());
         
         panneauBureau.setDragMode(JDesktopPane.OUTLINE_DRAG_MODE);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -79,6 +64,48 @@ public class Bureau extends JFrame implements Serializable, ActionListener{
         this.listeWidgets = b.getListeWidgets();
         this.listeUtilisateurs = b.getListeUtilisateurs();
 	}
+	
+	protected JPanel createLauncher(final String urlImg) {
+		JPanel launcher = new JPanel(){
+            public void paintComponent(Graphics g){
+                try{
+                    super.paintComponent(g);
+                    g.drawImage(ImageIO.read(new File(urlImg)), 0, 0, this);
+                }
+                catch(Exception e){
+                    System.out.println(e.getMessage());
+                }
+            }
+        };
+        launcher.setOpaque(false);
+        launcher.setSize(117, 108);
+        return launcher;
+	}
+	
+	protected JPanel createLaunchBar() {
+		JPanel barre = new JPanel(new GridLayout(1, 5, 25, 0)){
+            public void paintComponent(Graphics g){
+                try{
+                    super.paintComponent(g);
+                    g.drawImage(ImageIO.read(new File("../Images/barreLancement.png")), 0, 0, this);
+                }
+                catch(Exception e){
+                    System.out.println(e.getMessage());
+                }
+            }
+        };
+        barre.setOpaque(false);
+        barre.setBounds((int)this.getSize().getWidth()/2-783/2, (int)this.getSize().getHeight()-155, 783, 110);
+
+        barre.add(createLauncher("../Images/meteoLanceur.png"));
+        barre.add(createLauncher("../Images/blocLanceur.png"));
+        barre.add(createLauncher("../Images/galerieLanceur.png"));
+        barre.add(createLauncher("../Images/calculLanceur.png"));
+        barre.add(createLauncher("../Images/decoLanceur.png"));
+        
+        return barre;
+	}
+
 
     protected JMenuBar createMenuBar() {
         JMenuBar menuBar = new JMenuBar();
