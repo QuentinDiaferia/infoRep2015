@@ -110,10 +110,11 @@ public class Bureau extends JFrame implements Serializable, ActionListener{
 			public void mouseClicked(MouseEvent e) {
 				if(nom.equals("Quitter"))
 					quit();
-				else
+				else{
 					ajouterWidget(widget);
+                    maj=true;
+                }
 
-                maj=true;
 			}
 			public void mousePressed(MouseEvent e) {}
 			public void mouseReleased(MouseEvent e) {}
