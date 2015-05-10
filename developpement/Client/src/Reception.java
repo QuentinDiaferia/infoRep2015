@@ -6,21 +6,24 @@ import java.net.*;
 
 public class Reception implements Runnable {
 
-	private BufferedInputStream in = null;
-	private final Bureau bureau ;
-	Object retour;
-	ObjectInputStream ois;
-	
-	public Reception(BufferedInputStream in, Bureau bureau){
-		this.in = in ;
+	public final Bureau bureau;
+	public final Client client;
+
+	public Reception(Client client, Bureau bureau){
+
+		this.client = client ;
 		this.bureau = bureau ;
+
 	}
-	
+
 	public void run() {
-		
+
+		ObjectInputStream ois;
+		Object retour;
+
 		try {
 			while(true){
-				ois = new ObjectInputStream(in);
+				ois = new ObjectInputStream(this.client.getBis());
 				retour = ois.readObject();
 				if(retour != null) {
 					System.out.println("Mise à jour du bureau:");

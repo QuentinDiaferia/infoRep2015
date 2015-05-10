@@ -8,15 +8,15 @@ public class ReceptionServeur implements Runnable {
 
 	private BufferedInputStream in = null;
 	private final Bureau bureau;
-	public final HashMap<Integer,Socket> listeSockets;
+	public final ArrayList<Socket> listeSockets;
 	private Socket s;
 	Object retour;
 	ObjectInputStream ois;
 
-	public ReceptionServeur(Socket s, Bureau bureau, HashMap<Integer,Socket> socket){
+	public ReceptionServeur(Socket s, Bureau bureau, ArrayList<Socket> listeSockets){
 		this.s =s;
 		this.bureau = bureau;
-		this.listeSockets = socket;
+		this.listeSockets = listeSockets;
 		try{
 			this.in = new BufferedInputStream(s.getInputStream());
 		}catch(Exception e) {
@@ -40,9 +40,16 @@ public class ReceptionServeur implements Runnable {
 				} else {
 					System.out.println("Dépassement du nombre d'utilisateurs autorisés.");
 				}
-			} 
-		}catch (Exception e) {
-			System.out.println(e.getMessage());
+			}
+		} catch (IOException e1) {
+			System.out.println("Connexion perdue");
+			System.out.println("Nb restant : "+listeSockets.size());
+			listeSockets.remove((Object)s);
+			System.out.println("Nb restant : "+listeSockets.size());
+		} catch (Exception e2){
+			System.out.println(e2.getMessage());
+		} finally {
+
 		}
 	}
 
