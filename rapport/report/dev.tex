@@ -1,0 +1,14 @@
+\paragraph{}
+L'une des premières décisions du projet a été de décider, au sein de l'équipe, quelles seraient les différentes technologies qui allaient être mises en oeuvre afin de réaliser l'application. Que ce soit au niveau du langage utilisé ou, indépendemment de celui-ci, de la technologie d'informatique répartie en elle-même (Sockets, Corba, REST, etc), ces décisions sont la clé de la réussite du projet : elles garantissent, ou mettent en péril, le fonctionnement et l'optimisation de l'application.
+
+\paragraph{}
+Avant tout, nous nous sommes naturellement orientés vers le langage Java. En effet, l'ensemble du groupe ayant suivi un enseignement sur ce langage par le passé (en ASI 3 ou ailleurs), et beaucoup de travaux pratiques d'informatique répartie portant également dessus, il a été logique de se diriger vers celui-ci. En outre, le fait que Java soit un langage de haut niveau offre un confort d'utilisation non négligeable par rapport à d'autres langages tels que le C.
+
+\paragraph{}
+Ensuite, il a fallu faire le choix qui allait définir la façon dont le développement de l'application allait être réalisé : laquelle des différentes méthodes d'informatique répartie vues en cours appliquer à notre projet ? Au moment où nous nous sommes posé cette question, nous avions étudié les Sockets, Corba, RMI, SOAP et REST : nous avions donc à notre diposition ces cinq options.
+
+\paragraph{}
+Notre conception est basée sur un principe simple : un objet de type Bureau est créé par le serveur. Lorsqu'un client interagit avec le bureau, celui-ci est modifié et envoyé au serveur, qui le distribue ensuite à l'ensemble des clients. Nous avons donc "uniquement" besoin d'un moyen d'envoyer cet objet du serveur vers les différents clients et vice-versa. Nous nous sommes donc penchés sur la première méthode vue en cours : les sockets.
+
+\paragraph{}
+Une socket permet d'établir une liaison bidirectionnelle entre un client et le serveur, et d'y faire circuler des messages. En sérialisant notre objet Bureau, il nous est donc possible de le faire transiter par le biais de sockets. L'utilisation de la classe Java ServerSocket nous permet d'utiliser des sockets en mode connecté, plus fiables, et qui sont plus adéquats à un système de connexion à un bureau partagé comme celui que nous créons. Enfin, par un simple système de threads, il sera possible à notre programme Java de gérer les différentes sockets ouvertes avec les clients.
