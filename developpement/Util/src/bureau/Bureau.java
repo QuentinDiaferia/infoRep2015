@@ -22,10 +22,12 @@ public class Bureau extends JFrame implements Serializable, ActionListener{
 	public static final int nbMaxUtilisateurs = 4;
 	public static final int nbMaxWidgets = 6;
     private final JDesktopPane panneauBureau;
+    public static boolean maj;
 
     // Constructeur sans argument
 	public Bureau(){
         super("Bureau partagé");
+        this.maj=false;
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize(dimension);
         panneauBureau = new JDesktopPane(){
@@ -110,6 +112,8 @@ public class Bureau extends JFrame implements Serializable, ActionListener{
 					quit();
 				else
 					ajouterWidget(widget);
+
+                maj=true;
 			}
 			public void mousePressed(MouseEvent e) {}
 			public void mouseReleased(MouseEvent e) {}
@@ -221,6 +225,7 @@ public class Bureau extends JFrame implements Serializable, ActionListener{
                 }
             }
         }
+        maj=true;
     }
 
     //Create a new internal frame.
@@ -251,10 +256,11 @@ public class Bureau extends JFrame implements Serializable, ActionListener{
 
 	// Méthode de copie
 	public void copy(Bureau b){
-		this.listeWidgets.clear();
-		this.listeUtilisateurs.clear();
-        if(b.getListeWidgets().size()>this.getListeWidgets().size())
-        ajouterWidget(b.getListeWidgets().get(b.getListeWidgets().size()-1));
+        if(b.getListeWidgets().size()>this.getListeWidgets().size()){
+            ajouterWidget(b.getListeWidgets().get(b.getListeWidgets().size()-1));
+        }
+        this.listeWidgets.clear();
+        this.listeUtilisateurs.clear();
 	    copyListeWidgets(this.listeWidgets,b.getListeWidgets());
 	    copyListeUtilisateurs(this.listeUtilisateurs,b.getListeUtilisateurs());
 	}

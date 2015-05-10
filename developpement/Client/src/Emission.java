@@ -6,13 +6,13 @@ import java.net.*;
 
 public class Emission implements Runnable {
 
-	private OutputStream out;
+	private OutputStream output;
 	private String message = null;
 	private Scanner sc = null;
 	public final Bureau bureau;
 
-	public Emission(OutputStream out, Bureau b) {
-		this.out = out;
+	public Emission(OutputStream output, Bureau b) {
+		this.output = output;
 		this.bureau = b;
 	}
 
@@ -22,15 +22,14 @@ public class Emission implements Runnable {
 		sc = new Scanner(System.in);
         try {
 			while(true){
-				oos = new ObjectOutputStream(out);
-			    System.out.println("=> Action: ajouter un widget (ou se déconnecter)? o/n ");
-				if(sc.nextLine().equals("o")){
-				    WidgetMeteo wbn = new WidgetMeteo(true, "Meteo");
-				    this.bureau.ajouterWidget(wbn);
+				if(this.bureau.maj==true){
+				    this.bureau.maj=false;
+					oos = new ObjectOutputStream(output);
+				 	System.out.println("maj bureau ");
 					oos.writeObject(this.bureau);
-			    	out.flush();
+				    output.flush();
 				}else{
-					oos.close();
+				 	System.out.print(".");
 				}
 			}
 		}

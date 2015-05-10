@@ -18,6 +18,7 @@ public class Client implements Runnable {
         this.bureau=bureau;
         this.bureau.affichageBureau();
         System.out.println(this.bureau.toString());
+                    System.out.println(bureau.maj);
     }
 
     public static void main(String[] args) throws Exception {
