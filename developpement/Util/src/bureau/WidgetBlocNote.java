@@ -45,6 +45,7 @@ public class WidgetBlocNote extends Widget implements Serializable{
 
     public void majListener(){
         jta.addKeyListener(tl);
+        addInternalFrameListener(listener);
     }
 
     public void setContenu(String _contenu){

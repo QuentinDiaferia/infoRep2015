@@ -66,6 +66,7 @@ public class WidgetGalerie extends Widget implements Serializable{
     public void majListener(){
         precedent.addActionListener(precedentButton);
         suivant.addActionListener(suivantButton);
+        addInternalFrameListener(listener);
     }
 
     class SuivantButtonListener implements ActionListener, Serializable {
