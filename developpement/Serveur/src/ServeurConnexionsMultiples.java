@@ -40,7 +40,7 @@ public class ServeurConnexionsMultiples implements Runnable {
                       // initialisation du thread de broadcast
                       Thread broadcast = new Thread(new EmissionServeur(listeSockets,bureau));
 					Runnable runnable = new ServeurConnexionsMultiples(s, listeSockets, ++nbConnexions, bureau);
-					if(nbConnexions < bureau.getNbMaxUtilisateurs()+1) {
+					if(bureau.getNbUtilisateurs() < bureau.getNbMaxUtilisateurs()) {
                         bureau.ajouterUtilisateur(new Integer(nbConnexions));
 						System.out.println("Connexion d'un utilisateur, mise à jour du bureau en conséquence \n" + bureau.toString());
 	
