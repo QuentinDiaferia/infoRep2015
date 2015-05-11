@@ -11,6 +11,7 @@ public class WidgetBlocNote extends Widget implements Serializable{
     private final JPanel panneau;
     private JTextArea jta;
     private JScrollPane jsp;
+    private ToucheListener tl=new ToucheListener();
 
     public WidgetBlocNote(boolean statut, String nom){
         super(statut, nom);
@@ -25,7 +26,7 @@ public class WidgetBlocNote extends Widget implements Serializable{
 			public void focusGained(FocusEvent e) {
 				System.out.println("Focus");
 				setStatut(true);
-				jta.addKeyListener(new ToucheListener());
+				jta.addKeyListener(tl);
 			}
 
 			public void focusLost(FocusEvent e) {
@@ -42,6 +43,10 @@ public class WidgetBlocNote extends Widget implements Serializable{
         return this.contenu;
     }
 
+    public void majListener(){
+        jta.addKeyListener(tl);
+    }
+
     public void setContenu(String _contenu){
         this.contenu = _contenu;
     }
@@ -51,13 +56,12 @@ public class WidgetBlocNote extends Widget implements Serializable{
         return result;
     }
     
-    class ToucheListener implements KeyListener {
+    class ToucheListener implements KeyListener, Serializable {
 		public void keyReleased(KeyEvent e) {
 			setContenu(jta.getText());
 			maj = true;
 		}
 		public void keyPressed(KeyEvent e) {
-			
 		}
 		public void keyTyped(KeyEvent e) {
 			

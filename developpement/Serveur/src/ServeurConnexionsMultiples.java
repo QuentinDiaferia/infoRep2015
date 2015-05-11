@@ -35,12 +35,12 @@ public class ServeurConnexionsMultiples implements Runnable {
                 // boucle infinie permettant les connexions multiples
                 while (true) {
 					Socket s = serverSocket1.accept();
-          // ajout du socket de l'utilisateur demandant la connexion
-          listeSockets.add(s);
-          // initialisation du thread de broadcast
-          Thread broadcast = new Thread(new EmissionServeur(listeSockets,bureau));
+                      // ajout du socket de l'utilisateur demandant la connexion
+                      listeSockets.add(s);
+                      // initialisation du thread de broadcast
+                      Thread broadcast = new Thread(new EmissionServeur(listeSockets,bureau));
 					Runnable runnable = new ServeurConnexionsMultiples(s, listeSockets, ++nbConnexions, bureau);
-					if(nbConnexions < 5) {
+					if(bureau.getNbUtilisateurs() < bureau.getNbMaxUtilisateurs()) {
                         bureau.ajouterUtilisateur(new Integer(nbConnexions));
 						System.out.println("Connexion d'un utilisateur, mise à jour du bureau en conséquence \n" + bureau.toString());
 	

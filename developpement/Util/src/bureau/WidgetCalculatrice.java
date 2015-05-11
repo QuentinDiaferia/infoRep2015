@@ -1,3 +1,5 @@
+//Code tiré de openClassroom
+
 package bureau;
 
 import java.lang.*;
@@ -7,7 +9,7 @@ import javax.swing.*;
 import java.awt.event.*;
 
 public class WidgetCalculatrice extends Widget implements Serializable{
-    private JPanel panneau;
+    private final JPanel panneau;
     private final String[] tab_string = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "=", "C", "+", "-"};
     private JButton[] tab_button = new JButton[tab_string.length];
     private JLabel ecran = new JLabel();
@@ -15,16 +17,20 @@ public class WidgetCalculatrice extends Widget implements Serializable{
     private final Dimension dim2 = new Dimension(50,31);
     private double chiffre1;
     private boolean clicOperateur = false, update = false;
-    private String operateur = "";
+    private String operateur = ""; 
+    private final JPanel panEcran ; 
+    private final JPanel chiffre ; 
 
     public WidgetCalculatrice(boolean statut, String nom){
         super(statut, nom);
-        this.initCalculatrice();
+        chiffre = new JPanel();
+        panEcran = new JPanel();
         panneau = new JPanel(){
             public void paintComponent(Graphics g){
                 super.paintComponent(g);
             }
         };
+        this.initCalculatrice();
         this.setContentPane(panneau);
     }
 
@@ -36,9 +42,7 @@ public class WidgetCalculatrice extends Widget implements Serializable{
         ecran.setPreferredSize(new Dimension(220, 20));
         JPanel operateur = new JPanel();
         operateur.setPreferredSize(new Dimension(55, 225));
-        JPanel chiffre = new JPanel();
         chiffre.setPreferredSize(new Dimension(165, 225));
-        JPanel panEcran = new JPanel();
         panEcran.setPreferredSize(new Dimension(220, 30));
 
         for(int i = 0; i < tab_string.length; i++){

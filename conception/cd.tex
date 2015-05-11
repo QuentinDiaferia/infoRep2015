@@ -1,104 +1,58 @@
-\section{Algorithme de la procédure : connect}
-\begin{algorithme}
-	\small
-	\procedure{connect}{\paramEntreeSortie{nbUtilisateurs: \naturel}; \paramSortie{ConnexionReussie: \booleen, numeroUtilisateur: \naturel}}
-	{}
-	{
-	  	\sialorssinon{nbUtilisateurs $<$ 4}
-	  	{
-	  		\affecter{nbUtilisateurs}{nbUtilisateurs+1}
-	  		\affecter{ConnexionReussie}{Vrai}
-	  		\affecter{numeroUtilisateur}{genererNumUtilisateur()}
-	  		\instruction{sauvegarderUtilisateur(numeroUtilisateur)}
-	  	}
-	  	{
-	  		\affecter{ConnexionReussie}{Faux}
-	  		\instruction{throw new TooManyUsersException()}
-	  	}
-	}
-\end{algorithme}
+\section{Algorithme d'émission des données par le client}
 
-\section{Algorithme de la procédure : openWidget}
-\begin{algorithme}
-	\small
-	\procedure{openWidget}{\paramEntreeSortie{nbWidgetActives: \naturel};  \paramEntree{numeroWidget: \naturel, numeroUtilisateur: \naturel}; \paramSortie{ouvertureReussie: \booleen, widget: Widget}}
-	{}
-	{
-	  	\sialorssinon{nbWidgetActives $<$ 6}
-	  	{
-	  		\affecter{nbWidgetActives}{nbWidgetActives+1}
-	  		\affecter{widget}{new Widget(numeroWidget,numeroUtilisateur)}
-	  		\affecter{ouvertureReussie}{Vrai}
-	  	}
-	  	{
-	  		\affecter{ouvertureReussie}{Faux}
-	  		\instruction{throw new TooManyWindowsException()}
-	  	}
+\begin{algorithm}[H]
+	\KwData{Bureau bureau, Client client}
+	\KwResult{ - }
+	\While{1}{
+		\eIf{miseAJour(bureau)}{
+			envoyerBureau(bureau, client)\;
+		}{
+			sleep(10)\;
+		}
 	}
-\end{algorithme}
+\caption{Représentation pseudo-code du procédé d'émission des données par le client}
+\end{algorithm}
 
-\section{Algorithme de la procédure : compute}
-\begin{algorithme}
-	\small
-	\fonction{compute}{operande1, operande2: \naturel, operateur: \caractere}{\naturel}
-	{}
-	{
-	  	\sialorssinon{operateur = "-" et  operande2 $>$ operande1}
-	  	{
-	  		\instruction{throw new CalculException()}
-	  	}
-	  	{
-	  		\sialorssinon{operateur = "-"}
-	  		{
-	  			\retourner{operande1-operande2}
-	  		}
-	  		{
-	  			\retourner{operande1+operande2}
-	  		}
-	  	}
-	}
-\end{algorithme}
+\section{Algorithme de réception des données par le client}
 
-\section{Algorithme de la procédure : diaporama}
-\begin{algorithme}
-	\small
-	\procedure{diaporama}{\paramEntreeSortie{galerie: Galerie}; \paramEntree{changement: \chaine}}
-	{numImageActive, nbImages: \naturel}
-	{
-	  	\affecter{numImageActive}{galerie.getNumImage()}
-	  	\affecter{nbImages}{galerie.getNbImages()}
-	  	\sialorssinon{changement = "suivant"}
-	  	{
-	  		\sialorssinon{numImageActive $<$ nbImages}
-	  		{
-	  			\instruction{galerie.setImage(numImageActive+1)}
-	  		}
-	  		{
-	  			\instruction{galerie.setImage(1)}
-	  		}
-	  	}
-	  	{
-	  		\sialorssinon{numImageActive = 1}
-	  		{
-	  			\instruction{galerie.setImage(nbImages)}
-	  		}
-	  		{
-	  			\instruction{galerie.setImage(numImageActive-1)}
-	  		}
-	  	}
+\begin{algorithm}[H]
+	\KwData{Bureau bureau, Bureau retour}
+	\KwResult{ - }
+	\While{1}{
+		retour = recupererBureau()\;
+		\If{existe(retour)}{
+			bureau = retour\;
+		}
 	}
-\end{algorithme}
+\caption{Représentation pseudo-code du procédé de réception des données par le client}
+\end{algorithm}
 
-\section{Algorithme de la procédure : disconnect}
-\begin{algorithme}
-	\small
-	\procedure{disconnect}{\paramEntreeSortie{nbUtilisateurs: \naturel};\paramEntree{numeroUtilisateur: \naturel}}
-	{}
-	{
-	  	\sialors{demanderConfirmation()}
-	  	{
-	  		\affecter{nbUtilisateurs}{nbUtilisateurs-1}
-	  		\instruction{supprimerUtilisateur(numeroUtilisateur)}
-	  	}
+\section{Algorithme d'émission des données par le serveur}
+
+\begin{algorithm}[H]
+	\KwData{Bureau bureau, Liste sockets}
+	\KwResult{ - }
+	\If{taille(sockets) \textgreater 0}{
+		\While{existe(sockets.prochain)}{
+			socket = defiler(sockets)\;
+			envoyerBureau(bureau, socket)\;
+		}
 	}
-\end{algorithme}
+\caption{Représentation pseudo-code du procédé d'émission des données par le serveur}
+\end{algorithm}
+
+\section{Algorithme de réception des données par le serveur}
+
+\begin{algorithm}[H]
+	\KwData{Bureau bureau, Bureau retour}
+	\KwResult{ - }
+	\While{1}{
+		retour = recupererBureau()\;
+		\If{existe(retour)}{
+			bureau = retour\;
+			envoyerBureau(bureau)\;
+		}
+	}
+\caption{Représentation pseudo-code du procédé de réception des données par le serveur}
+\end{algorithm}
+
