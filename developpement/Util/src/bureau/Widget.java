@@ -12,6 +12,7 @@ public abstract class Widget extends JInternalFrame implements Serializable {
     private static boolean statut;
     private static final int xOffset = 30, yOffset = 30;
     public boolean affiche;
+    public boolean maj;
 
     public Widget(boolean statut, String nom){
         super("Widget " + nom,
@@ -22,6 +23,7 @@ public abstract class Widget extends JInternalFrame implements Serializable {
         this.setStatut(statut);
         openFrameCount = openFrameCount+1;
         affiche=false;
+        maj=false;
         setLocation(xOffset*openFrameCount, yOffset*openFrameCount);
     }
 

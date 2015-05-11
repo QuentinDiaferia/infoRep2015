@@ -90,6 +90,7 @@ public class WidgetGalerie extends Widget implements Serializable{
         } else {
             this.image = 1;
         }
+        this.maj=true;
     }
 
     public void precedent(){
@@ -98,6 +99,7 @@ public class WidgetGalerie extends Widget implements Serializable{
         } else {
             this.image = this.image - 1;
         }
+        this.maj=true;
     }
 
     public String toString() {

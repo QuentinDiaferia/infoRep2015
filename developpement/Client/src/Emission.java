@@ -21,8 +21,7 @@ public class Emission implements Runnable {
 		sc = new Scanner(System.in);
         try {
 			while(true){
-				if(this.bureau.maj==true){
-				    this.bureau.maj=false;
+				if(this.bureau.miseAJour()){
 					oos = new ObjectOutputStream(this.client.getBos());
 					System.out.println("maj bureau ");
 					oos.writeObject(this.bureau);

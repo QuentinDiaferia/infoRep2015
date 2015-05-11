@@ -309,6 +309,22 @@ public class Bureau extends JFrame implements Serializable, ActionListener{
 	    return this.listeUtilisateurs;
 	}
 
+    public boolean miseAJour(){
+        if(this.maj){
+            this.maj=false;
+            return true;
+        }else{
+            for(Widget w : listeWidgets){
+                if(w.maj){
+                    w.maj=false;
+                    return true;
+                }
+            }
+        }
+        return false;
+        
+    }
+
     // Méthode toString
 	public String toString() {
 		String result = new String("Bureau possédant:\n"+ getNbWidgets() +" widgets et dont le nombre maximum est: "+nbMaxWidgets+"\n"+getNbUtilisateurs()+ " utilisateurs et dont le nombre maximum est: "+nbMaxUtilisateurs);
@@ -329,7 +345,7 @@ public class Bureau extends JFrame implements Serializable, ActionListener{
             destination.add(source.get(i));
         }
     }
-    
+
     /*class clicListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
 			
