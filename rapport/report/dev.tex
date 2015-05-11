@@ -13,7 +13,7 @@ Ensuite, il a fallu faire le choix qui allait définir la façon dont le dévelo
 Notre conception est basée sur un principe simple : un objet de type Bureau est créé par le serveur. Lorsqu'un client interagit avec le bureau, celui-ci est modifié et envoyé au serveur, qui le distribue ensuite à l'ensemble des clients. Nous avons donc "uniquement" besoin d'un moyen d'envoyer cet objet du serveur vers les différents clients et vice-versa. Nous nous sommes donc penchés sur la première méthode vue en cours : les sockets.
 
 \paragraph{}
-Une socket permet d'établir une liaison bidirectionnelle entre un client et le serveur, et d'y faire circuler des messages. En sérialisant notre objet Bureau, il nous est donc possible de le faire transiter par le biais de sockets. L'utilisation de la classe Java ServerSocket nous permet d'utiliser des sockets en mode connecté, plus fiables, et qui sont plus adéquats à un système de connexion à un bureau partagé comme celui que nous créons. Enfin, par un simple système de threads, il sera possible à notre programme Java de gérer les différentes sockets ouvertes avec les clients.
+Une socket permet d'établir une liaison bidirectionnelle entre un client et le serveur, et d'y faire circuler des messages. En sérialisant notre objet Bureau, il nous est donc possible de le faire transiter par le biais de sockets. L'utilisation de la classe Java ServerSocket nous permet d'utiliser des sockets en mode connecté, plus fiables, et qui sont plus adéquats à un système de connexion à un bureau partagé comme celui que nous créons, nécessitant des connexions multiples, bidirectionnelles et persistantes. Enfin, par un simple système de threads, il sera possible à notre programme Java de gérer les différentes sockets ouvertes avec les clients.
 
 \section{Développement}
 
@@ -21,4 +21,6 @@ Une socket permet d'établir une liaison bidirectionnelle entre un client et le 
 Nous avons commencé par réaliser une simple architecture client/serveur Java basée sur une unique socket sans aucune interface graphique, afin de poser les bases de l'application. Ce premier jet permettait à un client de se connecter et de récupérer sur le serveur un objet de type Bureau très simple, la classe correspondante n'ayant pas encore été développée.
 
 \paragraph{}
-Une fois cette première version réalisée, nous nous sommes attaqué au projet en lui-même : réalisation des classe Bureau et Widget, de l'interface homme-machine, des événements, du code métier des différentes fonctionnalités. 
+Une fois cette première version réalisée, nous nous sommes attaqué au projet en lui-même : réalisation des classe Bureau et Widget, de l'interface homme-machine, des événements, du code métier des différentes fonctionnalités.
+
+
