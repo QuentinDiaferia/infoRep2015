@@ -1,0 +1,10 @@
+@startuml
+participant Utilisateur
+
+activate Serveur
+activate Système
+Utilisateur -> Serveur: déconnexion()
+Serveur -> Système : supprimerUtilisateur()
+Système --> Serveur : Utilisateur supprimé
+Serveur --> Utilisateur: connexion terminée
+@enduml
