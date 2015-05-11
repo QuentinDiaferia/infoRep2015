@@ -12,7 +12,7 @@ public abstract class Widget extends JInternalFrame implements Serializable {
     private static boolean statut;
     private static final int xOffset = 30, yOffset = 30;
     public boolean affiche;
-    public boolean maj;
+    public static boolean maj;
 
     public Widget(boolean statut, String nom){
         super("Widget " + nom,
