@@ -1,1 +1,1 @@
-java -cp classes Client 127.0.0.1 10999
+java -cp classes Client 192.168.1.63 10999
