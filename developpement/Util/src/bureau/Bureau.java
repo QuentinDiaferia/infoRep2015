@@ -258,6 +258,7 @@ public class Bureau extends JFrame implements Serializable, ActionListener{
         this.setSize(dimension);
         this.setContentPane(panneauBureau);
         this.setJMenuBar(createMenuBar());
+        panneauBureau.add(this.createLaunchBar());
         panneauBureau.setDragMode(JDesktopPane.OUTLINE_DRAG_MODE);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
