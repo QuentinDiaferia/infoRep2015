@@ -21,8 +21,8 @@ public class WidgetCalculatrice extends Widget implements Serializable{
     private final JPanel panEcran ; 
     private final JPanel chiffre ; 
 
-    public WidgetCalculatrice(boolean statut, String nom){
-        super(statut, nom);
+    public WidgetCalculatrice(String nom){
+        super(nom);
         chiffre = new JPanel();
         panEcran = new JPanel();
         panneau = new JPanel(){

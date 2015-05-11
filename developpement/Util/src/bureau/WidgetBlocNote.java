@@ -13,8 +13,8 @@ public class WidgetBlocNote extends Widget implements Serializable{
     private JScrollPane jsp;
     private ToucheListener tl=new ToucheListener();
 
-    public WidgetBlocNote(boolean statut, String nom){
-        super(statut, nom);
+    public WidgetBlocNote(String nom){
+        super(nom);
         this.contenu =  "Vous pouvez écrire ici.";
         panneau = new JPanel();
         
@@ -25,13 +25,11 @@ public class WidgetBlocNote extends Widget implements Serializable{
         jta.addFocusListener(new FocusListener() {    
 			public void focusGained(FocusEvent e) {
 				System.out.println("Focus");
-				setStatut(true);
 				jta.addKeyListener(tl);
 			}
 
 			public void focusLost(FocusEvent e) {
 				System.out.println("Focus out");
-				setStatut(false);
 			}
         });
         panneau.add(jsp);

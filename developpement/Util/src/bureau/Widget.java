@@ -12,18 +12,16 @@ import javax.swing.event.InternalFrameListener;
 
 public abstract class Widget extends JInternalFrame implements Serializable {
     private static int openFrameCount = 1;
-    private static boolean statut;
     private static final int xOffset = 10, yOffset = 10;
     public boolean affiche;
     public static boolean maj;
 
-    public Widget(boolean statut, String nom){
+    public Widget(String nom){
         super("Widget " + nom,
         false, //resizable
         true, //closable
         false, //maximizable
         false);//iconifiable
-        this.setStatut(statut);
         openFrameCount = openFrameCount+1;
         affiche=false;
         maj=false;
@@ -31,19 +29,11 @@ public abstract class Widget extends JInternalFrame implements Serializable {
 
     }
 
-    public void setStatut(boolean _statut){
-        this.statut = _statut;
-    }
-
-    public boolean getStatut(){
-        return this.statut;
-    }
-
     public void majListener(){
     }
 
     public String toString() {
-        String result = new String("Widget nommé :"+this.getTitle()+", avec le statut : "+this.getStatut());
+        String result = new String("Widget nommé :"+this.getTitle());
         return result;
     }
     

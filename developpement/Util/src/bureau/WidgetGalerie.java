@@ -17,8 +17,8 @@ public class WidgetGalerie extends Widget implements Serializable{
     private JButton precedent;
     private JButton suivant;
 
-    public WidgetGalerie(boolean statut, String nom){
-        super(statut, nom);
+    public WidgetGalerie(String nom){
+        super(nom);
         this.image = 1 ;
         this.liensImages.put(1, "../Images/galerie1.jpg");
         this.liensImages.put(2, "../Images/meteo.png");

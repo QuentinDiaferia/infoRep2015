@@ -83,20 +83,17 @@ public class Bureau extends JFrame implements Serializable, ActionListener{
 		switch(nom) {
 			case "Meteo":
 				urlImg = "../Images/meteoLanceur.png";
-				widget = new WidgetMeteo(true, nom);
+				widget = new WidgetMeteo(nom);
 				break;
 			case "Bloc-Notes":
 				urlImg = "../Images/blocLanceur.png";
-				widget = new WidgetBlocNote(true, nom);
+				widget = new WidgetBlocNote(nom);
 				break;
 			case "Galerie":
 				urlImg = "../Images/galerieLanceur.png";
-				widget = new WidgetGalerie(true, nom);
+				widget = new WidgetGalerie(nom);
 				break;
-			// case "Calculatrice":
-			// 	urlImg = "../Images/calculLanceur.png";
-			// 	widget = null;
-			// 	break;
+
 			default:
 				urlImg = "../Images/decoLanceur.png";
 				widget = null;
@@ -226,15 +223,15 @@ public class Bureau extends JFrame implements Serializable, ActionListener{
     public void actionPerformed(ActionEvent e) {
         System.out.println("t11");
         if (("meteo").equals(e.getActionCommand())) {
-            Widget widgetMeteo = new WidgetMeteo(true, "Meteo");
+            Widget widgetMeteo = new WidgetMeteo("Meteo");
             ajouterWidget(widgetMeteo);
         } else {
             if (("galerie").equals(e.getActionCommand())) {
-                Widget widgetGalerie = new WidgetGalerie(true, "Galerie");
+                Widget widgetGalerie = new WidgetGalerie("Galerie");
                 ajouterWidget(widgetGalerie);
             } else {
                 if (("blocnote").equals(e.getActionCommand())) {
-                    Widget widgetblocnote = new WidgetBlocNote(true, "Bloc-Notes");
+                    Widget widgetblocnote = new WidgetBlocNote("Bloc-Notes");
                     ajouterWidget(widgetblocnote);
                 } else {
                     // if (("calculatrice").equals(e.getActionCommand())) {

@@ -10,8 +10,8 @@ public class WidgetMeteo extends Widget implements Serializable{
     private String meteo;
     private final JPanel panneau;
 
-    public WidgetMeteo(boolean statut, String nom){
-        super(statut, nom);
+    public WidgetMeteo(String nom){
+        super(nom);
         this.meteo =  "Il pleut aujourd'hui en Normandie.";
         panneau = new JPanel(){
             public void paintComponent(Graphics g){
