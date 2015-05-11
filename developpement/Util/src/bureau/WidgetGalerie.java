@@ -12,6 +12,10 @@ public class WidgetGalerie extends Widget implements Serializable{
     private Integer image;
     private HashMap<Integer, String> liensImages = new HashMap<>();
     private final JPanel panneau;
+    private  PrecedentButtonListener precedentButton = new PrecedentButtonListener ();
+    private  SuivantButtonListener suivantButton = new SuivantButtonListener ();
+    private JButton precedent;
+    private JButton suivant;
 
     public WidgetGalerie(boolean statut, String nom){
         super(statut, nom);
@@ -43,28 +47,32 @@ public class WidgetGalerie extends Widget implements Serializable{
         add(menu, BorderLayout.NORTH);
 
         //register listener
-        PrecedentButtonListener precedentButton = new PrecedentButtonListener ();
-        SuivantButtonListener suivantButton = new SuivantButtonListener ();
+        
 
         //add listeners to corresponding componenets 
-        precedent.addActionListener(precedentButton);
-        suivant.addActionListener(suivantButton);
+        precedent.addActionListener(this.precedentButton);
+        suivant.addActionListener(this.suivantButton);
 
     }
 
-    class PrecedentButtonListener implements ActionListener {
+    class PrecedentButtonListener implements ActionListener, Serializable {
         public void actionPerformed(ActionEvent e)
             {
                 precedent();
-                repaint();
+                repaint(); 
             }
     }
 
-    class SuivantButtonListener implements ActionListener {
+    public void majListener(){
+        precedent.addActionListener(precedentButton);
+        suivant.addActionListener(suivantButton);
+    }
+
+    class SuivantButtonListener implements ActionListener, Serializable {
         public void actionPerformed(ActionEvent e)
             {
                 suivant();
-                repaint();
+                repaint();                 
             }
     }
 
