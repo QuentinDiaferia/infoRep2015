@@ -33,7 +33,7 @@ public class ReceptionServeur implements Runnable {
 				if(retour != null) {
 					this.bureau.copy((Bureau)retour);
 					System.out.println(bureau.toString());
-					System.out.println("Envoie du bureau aux clients:");
+					System.out.println("Envoi du bureau aux clients:");
                     // initialisation du thread de broadcast
 					Thread broadcast = new Thread(new EmissionServeur(listeSockets,bureau));
 					broadcast.start();
