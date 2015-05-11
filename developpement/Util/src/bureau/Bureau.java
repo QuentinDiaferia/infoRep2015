@@ -119,8 +119,14 @@ public class Bureau extends JFrame implements Serializable, ActionListener{
         
         launcher.addMouseListener(new MouseListener() {
 			public void mouseClicked(MouseEvent e) {
-				if(nom.equals("Quitter"))
+				if(nom.equals("Quitter")){
+                    listeUtilisateurs.remove(listeUtilisateurs.size()-1);
+                    maj=true;
+                    try{
+                    Thread.sleep(100);
+                    }catch(Exception ee){}
 					quit();
+                }
 				else{
 					ajouterWidget(widget);
                     maj=true;
@@ -235,6 +241,11 @@ public class Bureau extends JFrame implements Serializable, ActionListener{
                     //     Widget widgetcalculatrice = new WidgetCalculatrice(true, "Calculatrice");
                     //     ajouterWidget(widgetcalculatrice);
                     // } else {
+                        listeUtilisateurs.remove(listeUtilisateurs.size()-1);
+                        maj=true;
+                        try{
+                        Thread.sleep(100);
+                        }catch(Exception ee){}
                         quit();
                     
                 }

@@ -21,6 +21,11 @@ public class EmissionServeur implements Runnable {
 		try{
 			if(listeSockets.size()>0){
 				for(Socket s : listeSockets){
+					if(s.isClosed()){
+						listeSockets.remove(s);
+					}
+				}
+				for(Socket s : listeSockets){
 					OutputStream out = s.getOutputStream();
 					ObjectOutputStream oos = new ObjectOutputStream(out);
 					oos.writeObject(bureau);
