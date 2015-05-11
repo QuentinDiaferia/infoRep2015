@@ -42,7 +42,8 @@ public class ServeurConnexionsMultiples implements Runnable {
 					Runnable runnable = new ServeurConnexionsMultiples(s, listeSockets, ++nbConnexions, bureau);
 					if(nbConnexions < 5) {
                         bureau.ajouterUtilisateur(new Integer(nbConnexions));
-						System.out.println("Connexion d'un utilisateur, mise à jour du bureau en conséquence.");
+						System.out.println("Connexion d'un utilisateur, mise à jour du bureau en conséquence \n" + bureau.toString());
+	
             broadcast.start();
 						Thread thread = new Thread(runnable);
             bis = new BufferedInputStream(s.getInputStream());

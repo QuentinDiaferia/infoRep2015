@@ -54,6 +54,7 @@ public class WidgetBlocNote extends Widget implements Serializable{
     class ToucheListener implements KeyListener {
 		public void keyReleased(KeyEvent e) {
 			setContenu(jta.getText());
+			maj = true;
 		}
 		public void keyPressed(KeyEvent e) {
 			

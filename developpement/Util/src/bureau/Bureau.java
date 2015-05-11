@@ -21,8 +21,9 @@ public class Bureau extends JFrame implements Serializable, ActionListener{
 	private final java.util.List<Integer> listeUtilisateurs;
 	public static final int nbMaxUtilisateurs = 4;
 	public static final int nbMaxWidgets = 6;
-    private final JDesktopPane panneauBureau;
-    public static boolean maj;
+    	private final JDesktopPane panneauBureau;
+    	public static boolean maj;
+	private static MouvementListener listener;
 
     // Constructeur sans argument
 	public Bureau(){
@@ -51,6 +52,8 @@ public class Bureau extends JFrame implements Serializable, ActionListener{
         this.setVisible(true); 
 		this.listeWidgets = (java.util.List<Widget>)Collections.synchronizedList(new ArrayList<Widget>());
 		this.listeUtilisateurs = (java.util.List<Integer>)Collections.synchronizedList(new ArrayList<Integer>());
+	
+		listener = new MouvementListener(this);
 
 	}
 
@@ -64,6 +67,11 @@ public class Bureau extends JFrame implements Serializable, ActionListener{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
         this.listeWidgets = b.getListeWidgets();
+
+	for(Widget w : listeWidgets) {
+		w.addComponentListener(listener);
+	}
+
         this.listeUtilisateurs = b.getListeUtilisateurs();
 	}
 	
@@ -250,6 +258,7 @@ public class Bureau extends JFrame implements Serializable, ActionListener{
         this.setSize(dimension);
         this.setContentPane(panneauBureau);
         this.setJMenuBar(createMenuBar());
+        panneauBureau.add(this.createLaunchBar());
         panneauBureau.setDragMode(JDesktopPane.OUTLINE_DRAG_MODE);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
@@ -326,9 +335,13 @@ public class Bureau extends JFrame implements Serializable, ActionListener{
         
     }
 
+	public static void setMaj(boolean m) {
+		maj = m;	
+	}
+
     // Méthode toString
 	public String toString() {
-		String result = new String("Bureau possédant:\n"+ getNbWidgets() +" widgets et dont le nombre maximum est: "+nbMaxWidgets+"\n"+getNbUtilisateurs()+ " utilisateurs et dont le nombre maximum est: "+nbMaxUtilisateurs);
+		String result = new String("Bureau possédant:\n"+ getNbWidgets() +" widgets et dont le nombre maximum est: "+nbMaxWidgets+"\n"+getNbUtilisateurs()+ " utilisateurs et dont le nombre maximum est: "+nbMaxUtilisateurs + " - etat :" + maj);
 		return result;
 	}
 
@@ -336,6 +349,7 @@ public class Bureau extends JFrame implements Serializable, ActionListener{
 	private static void copyListeWidgets(java.util.List<Widget> destination, java.util.List<Widget> source){
         destination.clear();
         for( int i = 0 ; i < source.size() ; i++ ){
+	    source.get(i).addComponentListener(listener);
             destination.add(source.get(i));
         }
     }
