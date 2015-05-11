@@ -266,19 +266,21 @@ public class Bureau extends JFrame implements Serializable, ActionListener{
 
 	// Méthode de copie
 	public void copy(Bureau b){
-        if(b.getListeWidgets().size()>this.getListeWidgets().size()){
-            ajouterWidget(b.getListeWidgets().get(b.getListeWidgets().size()-1));
-        }
+        listener = new MouvementListener(this);
+        this.panneauBureau.removeAll();
         this.listeWidgets.clear();
         this.listeUtilisateurs.clear();
 	    copyListeWidgets(this.listeWidgets,b.getListeWidgets());
 	    copyListeUtilisateurs(this.listeUtilisateurs,b.getListeUtilisateurs());
+        panneauBureau.add(this.createLaunchBar());
+        repaint();
 	}
 
     // Méthodes de gestion des widgets
     public void ajouterWidget(Widget widget){
         this.listeWidgets.add(widget);
         this.createFrame(widget);
+        widget.addComponentListener(listener);
     }
 
     public void supprimerWidget(Widget widget){
@@ -320,23 +322,30 @@ public class Bureau extends JFrame implements Serializable, ActionListener{
 
     public boolean miseAJour(){
         boolean res=false;
+        Widget wSupp=null;
         if(this.maj){
             this.maj=false;
             res = true;
         }else{
             for(Widget w : this.listeWidgets){
-                if(w.maj){
+                if(w.maj || w.isClosed()){
+
+                    if(w.isClosed())
+                        wSupp=w;
+
                     w.maj=false;
                     res = true;
                 }
             }
         }
+        if(wSupp!=null)
+            this.listeWidgets.remove(wSupp);
         return res;
         
     }
 
 	public static void setMaj(boolean m) {
-		maj = m;	
+		maj = m;
 	}
 
     // Méthode toString
@@ -346,12 +355,17 @@ public class Bureau extends JFrame implements Serializable, ActionListener{
 	}
 
 	// Copie de liste
-	private static void copyListeWidgets(java.util.List<Widget> destination, java.util.List<Widget> source){
+	private  void copyListeWidgets(java.util.List<Widget> destination, java.util.List<Widget> source){
         destination.clear();
         for( int i = 0 ; i < source.size() ; i++ ){
-	    source.get(i).addComponentListener(listener);
-            destination.add(source.get(i));
+            Widget temp=source.get(i);
+            System.out.println("test");
+            // temp.majListener();
+            destination.add(temp);
+            createFrame(temp);
+            temp.addComponentListener(listener);
         }
+        
     }
 
     private static void copyListeUtilisateurs(java.util.List<Integer> destination, java.util.List<Integer> source){

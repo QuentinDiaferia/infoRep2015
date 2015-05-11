@@ -9,12 +9,9 @@ public class MouvementListener extends ComponentAdapter {
 
 	public MouvementListener(Bureau b) {
 		bureau = b;	
-		System.out.println("test !");
 	}
 
 	public void componentMoved(ComponentEvent e){
-		java.awt.Point loc =e.getComponent().getLocation();
-		System.out.println("test !");
 		Bureau.setMaj(true);
 	}
 }
