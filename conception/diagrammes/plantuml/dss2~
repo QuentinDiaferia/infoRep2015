@@ -1,0 +1,27 @@
+@startuml
+participant Utilisateur
+boundary VueBureau
+control ControleurBureau
+entity Widget
+entity Bureau
+
+activate Bureau
+activate VueBureau
+activate ControleurBureau
+Utilisateur -> VueBureau : clique sur le bouton d'ouverture du Widget
+VueBureau -> ControleurBureau : ouvrirWidget()
+
+alt nombre maximum de Widgets ouverts non atteint
+ControleurBureau -> Widget : creerWidget()
+activate Widget
+Widget --> ControleurBureau :
+ControleurBureau -> Bureau : ajouterWidget()
+Bureau --> ControleurBureau :
+ControleurBureau -> VueBureau :miseAJourVueBureau()
+VueBureau --> Utilisateur :
+else nombre maximum de Widgets ouverts atteint
+deactivate Widget
+ControleurBureau -> VueBureau : afficherMessageDErreur()
+VueBureau --> Utilisateur :
+end
+@enduml

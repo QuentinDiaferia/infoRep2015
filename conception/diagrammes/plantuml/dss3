@@ -1,0 +1,36 @@
+@startuml
+participant Utilisateur
+boundary VueBureau
+control ControleurBureau
+entity WidgetCalculatrice
+entity Bureau
+
+Utilisateur -> VueBureau : clique sur le champ de saisie de CalculatriceWidget
+activate VueBureau
+VueBureau --> Utilisateur :
+Utilisateur -> VueBureau : saisit une opération
+VueBureau --> Utilisateur :
+
+
+VueBureau -> ControleurBureau : mettreAJourOperationCalculatriceWidget()
+activate ControleurBureau
+
+ControleurBureau -> Bureau : getWidget()
+activate Bureau
+Bureau -> ControleurBureau : WidgetCalculatrice
+deactivate Bureau
+
+
+ControleurBureau -> WidgetCalculatrice : setOperation()
+activate WidgetCalculatrice
+WidgetCalculatrice --> ControleurBureau :
+deactivate WidgetCalculatrice
+
+
+ControleurBureau -> VueBureau :miseAJourVueBureau()
+deactivate ControleurBureau
+VueBureau --> Utilisateur :
+deactivate VueBureau
+
+@enduml
+

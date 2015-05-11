@@ -1,0 +1,30 @@
+@startuml
+participant Utilisateur
+boundary VueBureau
+control ControleurBureau
+entity WidgetGalerie
+entity Bureau
+
+Utilisateur -> VueBureau : clique sur le bouton de navigation gauche du WidgetGalerie
+activate VueBureau
+VueBureau -> ControleurBureau : mettreAJourOperationWidgetGalerie()
+activate ControleurBureau
+
+ControleurBureau -> Bureau : getWidget()
+activate Bureau
+Bureau -> ControleurBureau : WidgetGalerie
+deactivate Bureau
+
+
+ControleurBureau -> WidgetGalerie : suivant()
+activate WidgetGalerie
+WidgetGalerie--> ControleurBureau :
+deactivate WidgetGalerie
+
+
+ControleurBureau -> VueBureau :miseAJourVueBureau()
+deactivate ControleurBureau
+VueBureau --> Utilisateur :
+deactivate VueBureau
+
+@enduml

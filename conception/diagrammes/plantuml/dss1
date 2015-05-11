@@ -1,0 +1,20 @@
+@startuml
+participant Utilisateur
+participant Serveur
+participant Système
+
+Utilisateur -> Serveur: connexion()
+activate Serveur
+alt nombre maximal d'utilisateurs connectés non atteint
+
+Serveur -> Système : ajouterUtilisateur()
+activate Système
+Système --> Serveur : Utilisateur ajouté
+deactivate Système
+Serveur --> Utilisateur: connexion acceptée
+
+else nombre maximal d'utilisateurs connectés atteint
+Serveur --> Utilisateur: connexion refusée
+deactivate Serveur
+end
+@enduml
