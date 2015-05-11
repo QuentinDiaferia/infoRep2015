@@ -11,9 +11,9 @@ import javax.swing.event.InternalFrameEvent;
 import javax.swing.event.InternalFrameListener;
 
 public abstract class Widget extends JInternalFrame implements Serializable {
-    private static int openFrameCount = 0;
+    private static int openFrameCount = 1;
     private static boolean statut;
-    private static final int xOffset = 30, yOffset = 30;
+    private static final int xOffset = 10, yOffset = 10;
     public boolean affiche;
     public static boolean maj;
 

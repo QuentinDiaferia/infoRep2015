@@ -29,7 +29,7 @@ public class WidgetGalerie extends Widget implements Serializable{
                     g.drawImage(ImageIO.read(new File(getImageActuelle())), 0, 0, this);
                 }
                 catch(Exception e){
-                    System.out.println(e.getMessage());
+                    
                 }
             }
         };

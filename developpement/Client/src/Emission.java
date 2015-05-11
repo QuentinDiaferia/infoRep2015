@@ -27,12 +27,12 @@ public class Emission implements Runnable {
 					oos.writeObject(this.bureau);
 				    this.client.getBos().flush();
 				}else{
-					System.out.print(".");
+					// System.out.print(".");
 					try{
-						Thread.sleep(50);
+					 	Thread.sleep(10);
 					}
 			        catch (Exception e) {
-			            System.out.println(" : "+e.getMessage());
+			            
 			        }
 				}
 			}

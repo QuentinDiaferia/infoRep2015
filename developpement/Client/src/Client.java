@@ -16,8 +16,6 @@ public class Client implements Runnable {
         this.bos = bos;
         this.bureau = bureau;
         this.bureau.affichageBureau();
-        System.out.println(this.bureau.toString());
-        System.out.println(bureau.maj);
     }
 
     public static void main(String[] args) throws Exception {
@@ -45,8 +43,14 @@ public class Client implements Runnable {
             bos = new BufferedOutputStream(s.getOutputStream());
             ois = new ObjectInputStream(bis);
             retour = ois.readObject();
-            t1 = new Thread(new Client(s, (Bureau)retour, bis, bos));
-            t1.start();
+            if(retour!=null){                Bureau temp = new Bureau();
+                temp.copy((Bureau)retour);
+                t1 = new Thread(new Client(s, temp, bis, bos));
+                t1.start();
+                System.out.println("Connexion effectuée");
+            }else{
+                System.out.println("Dépassement du nombre maximum d'utilisateurs simultanés");
+            }
         }
     }
 
