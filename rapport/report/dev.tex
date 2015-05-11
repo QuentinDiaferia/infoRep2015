@@ -15,12 +15,15 @@ Notre conception est basée sur un principe simple : un objet de type Bureau est
 \paragraph{}
 Une socket permet d'établir une liaison bidirectionnelle entre un client et le serveur, et d'y faire circuler des messages. En sérialisant notre objet Bureau, il nous est donc possible de le faire transiter par le biais de sockets. L'utilisation de la classe Java ServerSocket nous permet d'utiliser des sockets en mode connecté, plus fiables, et qui sont plus adéquats à un système de connexion à un bureau partagé comme celui que nous créons, nécessitant des connexions multiples, bidirectionnelles et persistantes. Enfin, par un simple système de threads, il sera possible à notre programme Java de gérer les différentes sockets ouvertes avec les clients.
 
+\paragraph{}
+L'utilisation des sockets est certes un peu "brutale", mais elle nous a parue la plus adaptée et la plus simple pour résoudre notre problème. En effet, une fois l'objet Bureau modifié par le client, le server n'a plus qu'à vérifier si l'action est autorisée et à propager le bureau à tous les autres clients.
+
 \section{Développement}
 
 \paragraph{}
 Nous avons commencé par réaliser une simple architecture client/serveur Java basée sur une unique socket sans aucune interface graphique, afin de poser les bases de l'application. Ce premier jet permettait à un client de se connecter et de récupérer sur le serveur un objet de type Bureau très simple, la classe correspondante n'ayant pas encore été développée.
 
 \paragraph{}
-Une fois cette première version réalisée, nous nous sommes attaqué au projet en lui-même : réalisation des classe Bureau et Widget, de l'interface homme-machine, des événements, du code métier des différentes fonctionnalités.
+Une fois cette première version réalisée, nous nous sommes attaqué au projet en lui-même : réalisation des classe Bureau et Widget, des classes héritant de cette dernière, de l'interface homme-machine, des événements, du code métier des différentes fonctionnalités.
 
 
