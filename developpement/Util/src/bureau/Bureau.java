@@ -310,18 +310,19 @@ public class Bureau extends JFrame implements Serializable, ActionListener{
 	}
 
     public boolean miseAJour(){
+        boolean res=false;
         if(this.maj){
             this.maj=false;
-            return true;
+            res = true;
         }else{
-            for(Widget w : listeWidgets){
+            for(Widget w : this.listeWidgets){
                 if(w.maj){
                     w.maj=false;
-                    return true;
+                    res = true;
                 }
             }
         }
-        return false;
+        return res;
         
     }
 
