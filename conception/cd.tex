@@ -2,7 +2,7 @@
 \section{Algorithme de la procédure : connect (supprimé)}
 \begin{algorithme}
 	\small
-	\procedure{connect}{\paramEntreeSortie{nbUtilisateurs: \naturel}; \paramSortie{ConnexionReussie: \booleen, numeroUtilisateur: \naturel}}
+	\procedurebis{connect}{\paramEntreeSortie{nbUtilisateurs: \naturel}; \paramSortie{ConnexionReussie: \booleen, numeroUtilisateur: \naturel}}
 	{}
 	{
 	  	\sialorssinon{nbUtilisateurs $<$ 4}
@@ -22,7 +22,7 @@
 \section{Algorithme de la procédure : openWidget (supprimé)}
 \begin{algorithme}
 	\small
-	\procedure{openWidget}{\paramEntreeSortie{nbWidgetActives: \naturel};  \paramEntree{numeroWidget: \naturel, numeroUtilisateur: \naturel}; \paramSortie{ouvertureReussie: \booleen, widget: Widget}}
+	\procedurebis{openWidget}{\paramEntreeSortie{nbWidgetActives: \naturel};  \paramEntree{numeroWidget: \naturel, numeroUtilisateur: \naturel}; \paramSortie{ouvertureReussie: \booleen, widget: Widget}}
 	{}
 	{
 	  	\sialorssinon{nbWidgetActives $<$ 6}
@@ -63,7 +63,7 @@
 \section{Algorithme de la procédure : diaporama (supprimé)}
 \begin{algorithme}
 	\small
-	\procedure{diaporama}{\paramEntreeSortie{galerie: Galerie}; \paramEntree{changement: \chaine}}
+	\procedurebis{diaporama}{\paramEntreeSortie{galerie: Galerie}; \paramEntree{changement: \chaine}}
 	{numImageActive, nbImages: \naturel}
 	{
 	  	\affecter{numImageActive}{galerie.getNumImage()}
@@ -93,7 +93,7 @@
 \section{Algorithme de la procédure : disconnect (supprimé)}
 \begin{algorithme}
 	\small
-	\procedure{disconnect}{\paramEntreeSortie{nbUtilisateurs: \naturel};\paramEntree{numeroUtilisateur: \naturel}}
+	\procedurebis{disconnect}{\paramEntreeSortie{nbUtilisateurs: \naturel};\paramEntree{numeroUtilisateur: \naturel}}
 	{}
 	{
 	  	\sialors{demanderConfirmation()}
