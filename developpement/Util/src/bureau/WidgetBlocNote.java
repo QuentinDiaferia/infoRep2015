@@ -24,13 +24,10 @@ public class WidgetBlocNote extends Widget implements Serializable{
 		jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         jta.addFocusListener(new FocusListener() {    
 			public void focusGained(FocusEvent e) {
-				System.out.println("Focus");
 				jta.addKeyListener(tl);
 			}
 
-			public void focusLost(FocusEvent e) {
-				System.out.println("Focus out");
-			}
+			public void focusLost(FocusEvent e) { }
         });
         panneau.add(jsp);
         this.setContentPane(panneau);
