@@ -1,3 +1,112 @@
+\color{red}
+\section{Algorithme de la procédure : connect (supprimé)}
+\begin{algorithme}
+	\small
+	\procedure{connect}{\paramEntreeSortie{nbUtilisateurs: \naturel}; \paramSortie{ConnexionReussie: \booleen, numeroUtilisateur: \naturel}}
+	{}
+	{
+	  	\sialorssinon{nbUtilisateurs $<$ 4}
+	  	{
+	  		\affecter{nbUtilisateurs}{nbUtilisateurs+1}
+	  		\affecter{ConnexionReussie}{Vrai}
+	  		\affecter{numeroUtilisateur}{genererNumUtilisateur()}
+	  		\instruction{sauvegarderUtilisateur(numeroUtilisateur)}
+	  	}
+	  	{
+	  		\affecter{ConnexionReussie}{Faux}
+	  		\instruction{throw new TooManyUsersException()}
+	  	}
+	}
+\end{algorithme}
+
+\section{Algorithme de la procédure : openWidget (supprimé)}
+\begin{algorithme}
+	\small
+	\procedure{openWidget}{\paramEntreeSortie{nbWidgetActives: \naturel};  \paramEntree{numeroWidget: \naturel, numeroUtilisateur: \naturel}; \paramSortie{ouvertureReussie: \booleen, widget: Widget}}
+	{}
+	{
+	  	\sialorssinon{nbWidgetActives $<$ 6}
+	  	{
+	  		\affecter{nbWidgetActives}{nbWidgetActives+1}
+	  		\affecter{widget}{new Widget(numeroWidget,numeroUtilisateur)}
+	  		\affecter{ouvertureReussie}{Vrai}
+	  	}
+	  	{
+	  		\affecter{ouvertureReussie}{Faux}
+	  		\instruction{throw new TooManyWindowsException()}
+	  	}
+	}
+\end{algorithme}
+
+\section{Algorithme de la procédure : compute (supprimé)}
+\begin{algorithme}
+	\small
+	\fonction{compute}{operande1, operande2: \naturel, operateur: \caractere}{\naturel}
+	{}
+	{
+	  	\sialorssinon{operateur = "-" et  operande2 $>$ operande1}
+	  	{
+	  		\instruction{throw new CalculException()}
+	  	}
+	  	{
+	  		\sialorssinon{operateur = "-"}
+	  		{
+	  			\retourner{operande1-operande2}
+	  		}
+	  		{
+	  			\retourner{operande1+operande2}
+	  		}
+	  	}
+	}
+\end{algorithme}
+
+\section{Algorithme de la procédure : diaporama (supprimé)}
+\begin{algorithme}
+	\small
+	\procedure{diaporama}{\paramEntreeSortie{galerie: Galerie}; \paramEntree{changement: \chaine}}
+	{numImageActive, nbImages: \naturel}
+	{
+	  	\affecter{numImageActive}{galerie.getNumImage()}
+	  	\affecter{nbImages}{galerie.getNbImages()}
+	  	\sialorssinon{changement = "suivant"}
+	  	{
+	  		\sialorssinon{numImageActive $<$ nbImages}
+	  		{
+	  			\instruction{galerie.setImage(numImageActive+1)}
+	  		}
+	  		{
+	  			\instruction{galerie.setImage(1)}
+	  		}
+	  	}
+	  	{
+	  		\sialorssinon{numImageActive = 1}
+	  		{
+	  			\instruction{galerie.setImage(nbImages)}
+	  		}
+	  		{
+	  			\instruction{galerie.setImage(numImageActive-1)}
+	  		}
+	  	}
+	}
+\end{algorithme}
+
+\section{Algorithme de la procédure : disconnect (supprimé)}
+\begin{algorithme}
+	\small
+	\procedure{disconnect}{\paramEntreeSortie{nbUtilisateurs: \naturel};\paramEntree{numeroUtilisateur: \naturel}}
+	{}
+	{
+	  	\sialors{demanderConfirmation()}
+	  	{
+	  		\affecter{nbUtilisateurs}{nbUtilisateurs-1}
+	  		\instruction{supprimerUtilisateur(numeroUtilisateur)}
+	  	}
+	}
+\end{algorithme}
+\color{black}
+
+
+\color{ForestGreen}
 \section{Algorithme d'émission des données par le client}
 
 \begin{algorithm}[H]
@@ -55,4 +164,4 @@
 	}
 \caption{Représentation pseudo-code du procédé de réception des données par le serveur}
 \end{algorithm}
-
+\color{black}
